@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Tesselet Robotics × Axellie — Discovery</title>
+<style>
+  :root{--bg:#101418;--qbg:#0a0d10;--panel:#171c21;--field:#12171b;--ink:#eceff2;--muted:#9aa4ad;--line:#262d34;--acc:#25d0c0;--acc2:#4ce3d4;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  .wrap{max-width:730px;margin:0 auto;padding:26px 20px 90px}
+  .header{background:#0b0e11;border:1px solid #20262c;border-radius:14px;padding:26px 22px 22px;text-align:center;box-shadow:0 12px 34px rgba(0,0,0,.55);border-bottom:5px solid var(--acc);position:relative;overflow:hidden}
+  .header svg{position:absolute;inset:0;width:100%;height:100%;opacity:.16}
+  .wm{position:relative;font-weight:800;font-size:30px;letter-spacing:.16em;color:#fff;margin:0}
+  .wm span{color:var(--acc)}
+  .wm2{position:relative;font-size:12px;letter-spacing:.42em;color:var(--muted);text-transform:uppercase;margin-top:4px}
+  .topbar{display:flex;align-items:center;gap:10px;margin:16px 2px 4px;flex-wrap:wrap}
+  .tagline{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-weight:800}
+  .langs{margin-left:auto;display:flex;gap:6px}
+  .lang{border:1.5px solid #333b43;background:#1c2229;border-radius:8px;padding:5px 12px;font-weight:700;font-size:13px;cursor:pointer;color:#c2c8ce}
+  .lang.active{background:var(--acc);border-color:var(--acc);color:#08201e}
+  .intro{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:14px 18px;color:#d7dce1;font-size:14.5px;margin:14px 0 16px}
+  .name{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:18px;display:grid;gap:12px;grid-template-columns:1fr 1fr}
+  @media(max-width:560px){.name{grid-template-columns:1fr}}
+  .qpanel{background:var(--qbg);border:1px solid #1b2126;border-radius:16px;padding:8px 20px 24px;box-shadow:0 16px 44px rgba(0,0,0,.45)}
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin:26px 0 4px;border-bottom:1px solid #232a30;padding-bottom:6px}
+  .qpanel h2:first-of-type{margin-top:14px}
+  .gold{color:var(--acc2);font-size:12.5px;font-weight:700;margin:0 0 8px}
+  label.q{display:block;font-weight:600;font-size:14.5px;margin:16px 0 6px;color:#f1f3f5}
+  label.q .num{color:var(--acc);font-weight:800;margin-right:6px}
+  input[type=text],textarea{width:100%;border:1px solid #303841;border-radius:10px;padding:11px 13px;font:inherit;font-size:14.5px;background:var(--field);color:#fff;resize:vertical}
+  input::placeholder,textarea::placeholder{color:#6d777f}
+  input:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(37,208,192,.20)}
+  textarea{min-height:64px}
+  .scale{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .scale button{border:1.5px solid #303841;background:var(--field);border-radius:10px;width:44px;height:44px;font-weight:800;font-size:16px;cursor:pointer;color:#aeb6bd}
+  .scale button.sel{background:var(--acc);border-color:var(--acc);color:#08201e}
+  .submit{margin-top:26px;width:100%;background:var(--acc);color:#06201d;border:none;border-radius:12px;padding:15px;font-weight:800;font-size:16px;cursor:pointer;letter-spacing:.02em}
+  .submit:hover{background:var(--acc2)}
+  .submit:disabled{opacity:.6;cursor:default}
+  .note{color:#858e96;font-size:12.5px;margin-top:10px;text-align:center}
+  .done{text-align:center;padding:60px 20px}
+  .done .big{font-size:42px}
+  .done h1{font-size:26px;color:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+const SUPA_URL="https://oyzrcjrvppzhbuethicc.supabase.co";
+const SUPA_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95enJjanJ2cHB6aGJ1ZXRoaWNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTEyMTQsImV4cCI6MjA4OTQ2NzIxNH0.HDV3-G_Ua2njp8xOmIJaXEV4XbV4pczgVzM379aZw_k";
+
+const T={
+  en:{intro:"A few honest answers from each of you so we build the right things first — and don't waste your time. There are no wrong answers; \"not sure yet\" is a perfectly good answer. ~15 minutes. Your answers feed directly into what we automate first and where we draw the security line.",
+    nameL:"Your name", namePh:"e.g. Dominique",
+    roleL:"Your role", rolePh:"e.g. CEO / BD / Operations",
+    submit:"Send my answers", sending:"Sending…", need:"Please add your name first.",
+    err:"Something went wrong — please try again.",
+    scaleQ:"Quick one: how comfortable are you with AI today? 1 (brand new) → 5 (power user)",
+    extraQ:"(Optional) Anything else on your mind you'd like me to know?",
+    doneH:"Thank you!", doneP:"Your answers are in. This shapes exactly what we build together. 🚀",
+    priv:"🔒 Answers go to a private database only Anton can read. Please keep them unclassified — no controlled-goods, ITAR or customer-confidential detail is needed to answer these."},
+  fr:{intro:"Quelques réponses honnêtes de chacun de vous, pour qu'on bâtisse les bonnes choses en premier — sans vous faire perdre de temps. Il n'y a pas de mauvaises réponses; « pas encore sûr » est tout à fait valable. ~15 minutes. Vos réponses alimentent directement ce qu'on automatise en premier et l'endroit où on trace la ligne de sécurité.",
+    nameL:"Votre nom", namePh:"ex. Dominique",
+    roleL:"Votre rôle", rolePh:"ex. PDG / Dév. des affaires / Opérations",
+    submit:"Envoyer mes réponses", sending:"Envoi…", need:"Veuillez d'abord indiquer votre nom.",
+    err:"Une erreur est survenue — réessayez.",
+    scaleQ:"Petite question : quel est votre niveau d'aisance avec l'IA aujourd'hui ? 1 (tout nouveau) → 5 (expert)",
+    extraQ:"(Optionnel) Autre chose qui vous trotte dans la tête et que vous aimeriez que je sache ?",
+    doneH:"Merci !", doneP:"Vos réponses sont enregistrées. Ça façonne exactement ce qu'on va bâtir ensemble. 🚀",
+    priv:"🔒 Les réponses vont dans une base privée que seul Anton peut lire. Gardez-les non classifiées — aucun détail lié aux marchandises contrôlées, à l'ITAR ou aux contrats clients n'est nécessaire ici."}
+};
+const SEC={
+  A:{en:"You & your role",fr:"Vous & votre rôle"},
+  B:{en:"Your biggest time-thieves",fr:"Vos plus grands voleurs de temps",gEn:"the gold — this decides what we automate first",gFr:"l'or — ça décide ce qu'on automatise en premier"},
+  C:{en:"Customers, prospects & relationships",fr:"Clients, prospects & relations"},
+  D:{en:"Reporting, projects & coordination",fr:"Rapports, projets & coordination"},
+  E:{en:"Expectations & dreams",fr:"Attentes & rêves",gEn:"think big — no limits here",gFr:"voyez grand — aucune limite ici"},
+  F:{en:"Tools & data",fr:"Outils & données"},
+  G:{en:"Security & guardrails",fr:"Sécurité & garde-fous",gEn:"where the line runs decides how far we can go",gFr:"où passe la ligne détermine jusqu'où on peut aller"}
+};
+const Q=[
+ {id:"q1",s:"A",en:"Your name, your role, and what a typical work week looks like for you.",fr:"Votre nom, votre rôle, et à quoi ressemble une semaine de travail typique pour vous."},
+ {id:"q2",s:"A",en:"Which parts of your work give you energy — and which parts drain you?",fr:"Quelles parties de votre travail vous donnent de l'énergie — et lesquelles vous drainent ?"},
+ {id:"q3",s:"B",en:"What repetitive tasks eat the most of your time each week? (your top 3)",fr:"Quelles tâches répétitives grugent le plus de votre temps chaque semaine ? (votre top 3)"},
+ {id:"q4",s:"B",en:"What do you do manually that feels like it should already be automatic?",fr:"Que faites-vous manuellement qui devrait déjà, selon vous, être automatique ?"},
+ {id:"q5",s:"B",en:"Where do you copy or move information by hand between systems? (Outlook, Excel, Teams, SharePoint, accounting, project tools…)",fr:"Où copiez-vous ou déplacez-vous de l'information à la main entre les systèmes ? (Outlook, Excel, Teams, SharePoint, comptabilité, outils de projet…)"},
+ {id:"q6",s:"B",en:"How much of your week goes to email? What would \"my inbox is handled\" actually look like for you — and what should an AI never answer on your behalf?",fr:"Quelle part de votre semaine passe dans les courriels ? À quoi ressemblerait concrètement « ma boîte est gérée » — et à quoi une IA ne devrait-elle jamais répondre à votre place ?"},
+ {id:"q7",s:"B",en:"Which approvals or sign-offs go through you, and where do they typically get stuck or forgotten?",fr:"Quelles approbations ou validations passent par vous, et où restent-elles typiquement bloquées ou oubliées ?"},
+ {id:"q8",s:"B",en:"What information do you constantly have to dig around to find — and where does it usually turn out to be?",fr:"Quelle information devez-vous constamment aller déterrer — et où finit-elle habituellement par se trouver ?"},
+ {id:"q9",s:"C",en:"How do you keep track of customers, prospects, suppliers and partners today? Where does that live, and what falls through the cracks?",fr:"Comment suivez-vous aujourd'hui les clients, prospects, fournisseurs et partenaires ? Où cette information vit-elle, et qu'est-ce qui passe entre les mailles ?"},
+ {id:"q10",s:"C",en:"After a trade show, a Teams call or an email exchange — what happens to the notes, the next steps and the follow-ups?",fr:"Après un salon, un appel Teams ou un échange de courriels — qu'arrive-t-il aux notes, aux prochaines étapes et aux suivis ?"},
+ {id:"q11",s:"C",en:"Name the 2–3 relationships where a missed follow-up would hurt the most right now. What would \"never dropping the ball\" on those be worth?",fr:"Nommez les 2–3 relations où un suivi manqué ferait le plus mal en ce moment. Que vaudrait le fait de ne jamais échapper la balle sur celles-là ?"},
+ {id:"q12",s:"D",en:"Which reports, numbers or decks do you assemble by hand — how often, and how long does each one take?",fr:"Quels rapports, chiffres ou présentations montez-vous à la main — à quelle fréquence, et combien de temps chacun prend-il ?"},
+ {id:"q13",s:"D",en:"What does board / investor / program reporting cost you per cycle, and what is the hardest part of putting it together?",fr:"Que vous coûte, par cycle, la production des rapports pour le CA / les investisseurs / les programmes, et quelle en est la partie la plus difficile ?"},
+ {id:"q14",s:"D",en:"Where does coordination break down most often — between departments, with suppliers, or across projects? Give a concrete recent example.",fr:"Où la coordination brise-t-elle le plus souvent — entre les départements, avec les fournisseurs, ou entre les projets ? Donnez un exemple concret récent."},
+ {id:"q15",s:"E",en:"What do you hope to get out of this AI project?",fr:"Qu'espérez-vous retirer de ce projet d'IA ?"},
+ {id:"q16",s:"E",en:"If ONE thing at Tesselet became effortless in the next 3 months, what would make the biggest difference?",fr:"Si UNE seule chose chez Tesselet devenait sans effort dans les 3 prochains mois, qu'est-ce qui ferait la plus grande différence ?"},
+ {id:"q17",s:"E",en:"If you had an assistant that never sleeps and never forgets, what's the first thing you'd hand it? And: \"wouldn't it be amazing if Tesselet could just ______?\"",fr:"Si vous aviez un assistant qui ne dort jamais et n'oublie jamais, quelle serait la première chose que vous lui confieriez ? Et : « ne serait-ce pas génial si Tesselet pouvait simplement ______ ? »"},
+ {id:"q18",s:"F",en:"Which tools do you use every single day? Which one is the \"source of truth\" for your most important data — and which one do you wish you never had to open again?",fr:"Quels outils utilisez-vous tous les jours ? Lequel est la « source de vérité » pour vos données les plus importantes — et lequel aimeriez-vous ne plus jamais avoir à ouvrir ?"},
+ {id:"q19",s:"G",en:"In YOUR daily work: which information is genuinely sensitive (defense, controlled goods/ITAR, customer contracts, IP, personal data) and which is safe to hand to an AI? Where would you draw the line — and does anything have to stay in Canada?",fr:"Dans VOTRE travail quotidien : quelle information est réellement sensible (défense, marchandises contrôlées/ITAR, contrats clients, PI, renseignements personnels) et laquelle peut sans risque être confiée à une IA ? Où tracez-vous la ligne — et y a-t-il des données qui doivent rester au Canada ?"},
+ {id:"q20",s:"G",en:"What should the AI never do on its own, without a human approving first? (sending anything externally, committing money, changing records, talking to a customer…)",fr:"Que l'IA ne devrait-elle jamais faire seule, sans qu'un humain approuve d'abord ? (envoyer quoi que ce soit à l'externe, engager de l'argent, modifier des données, parler à un client…)"}
+];
+
+let lang = (navigator.language||"en").slice(0,2)==="fr" ? "fr":"en";
+let vals = {}; let name=""; let role="";
+
+const HEX='<svg viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="t" width="24" height="28" patternUnits="userSpaceOnUse"><path d="M12 0 L24 7 L24 21 L12 28 L0 21 L0 7 Z" fill="none" stroke="#25d0c0" stroke-width="1"/></pattern></defs><rect width="300" height="100" fill="url(#t)"/></svg>';
+
+function render(){
+  const t=T[lang];
+  const secDone=new Set();
+  let html='<div class="header">'+HEX+'<p class="wm">TESSE<span>LET</span></p><div class="wm2">Robotics</div></div>'
+    +'<div class="topbar"><div class="tagline">Discovery · with Axellie</div>'
+    +'<div class="langs">'
+    +'<button class="lang '+(lang==='en'?'active':'')+'" data-l="en">EN</button>'
+    +'<button class="lang '+(lang==='fr'?'active':'')+'" data-l="fr">FR</button>'
+    +'</div></div>'
+    +'<div class="intro">'+t.intro+'</div>'
+    +'<div class="name">'
+    +'<div><label class="q" style="margin:0 0 6px"><span class="num">✎</span>'+t.nameL+'</label>'
+    +'<input type="text" id="rname" placeholder="'+t.namePh+'" value="'+escapeAttr(name)+'"></div>'
+    +'<div><label class="q" style="margin:0 0 6px"><span class="num">✎</span>'+t.roleL+'</label>'
+    +'<input type="text" id="rrole" placeholder="'+t.rolePh+'" value="'+escapeAttr(role)+'"></div>'
+    +'</div><div class="qpanel">';
+  Q.forEach(function(q,i){
+    if(!secDone.has(q.s)){
+      secDone.add(q.s);
+      const s=SEC[q.s];
+      html+='<h2>'+q.s+' · '+s[lang]+'</h2>';
+      const g = lang==='en'?s.gEn:s.gFr;
+      if(g) html+='<div class="gold">← '+g+'</div>';
+    }
+    html+='<label class="q"><span class="num">'+(i+1)+'.</span>'+q[lang]+'</label>'
+      +'<textarea data-q="'+q.id+'">'+escapeHtml(vals[q.id]||"")+'</textarea>';
+  });
+  let btns=""; for(let n=1;n<=5;n++) btns+='<button type="button" class="sc '+(vals.ai_comfort==n?'sel':'')+'" data-q="ai_comfort" data-v="'+n+'">'+n+'</button>';
+  html+='<label class="q"><span class="num">★</span>'+t.scaleQ+'</label><div class="scale">'+btns+'</div>'
+    +'<label class="q"><span class="num">✎</span>'+t.extraQ+'</label><textarea data-q="extra">'+escapeHtml(vals.extra||"")+'</textarea>'
+    +'<button class="submit" id="send">'+t.submit+'</button>'
+    +'<div class="note">'+t.priv+'</div></div>';
+  document.getElementById("app").innerHTML=html;
+
+  document.querySelectorAll(".lang").forEach(function(b){b.onclick=function(){ collect(); lang=b.dataset.l; document.documentElement.lang=lang; render(); };});
+  document.getElementById("rname").oninput=function(e){name=e.target.value;};
+  document.getElementById("rrole").oninput=function(e){role=e.target.value;};
+  document.querySelectorAll("textarea[data-q]").forEach(function(el){el.oninput=function(e){vals[e.target.dataset.q]=e.target.value;};});
+  document.querySelectorAll(".sc").forEach(function(b){b.onclick=function(){ vals.ai_comfort=+b.dataset.v;
+    document.querySelectorAll(".sc").forEach(function(x){x.classList.remove("sel");}); b.classList.add("sel"); };});
+  document.getElementById("send").onclick=submit;
+}
+function collect(){ const n=document.getElementById("rname"); if(n) name=n.value;
+  const r=document.getElementById("rrole"); if(r) role=r.value;
+  document.querySelectorAll("textarea[data-q]").forEach(function(el){vals[el.dataset.q]=el.value;}); }
+function escapeHtml(s){return (s||"").replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+function escapeAttr(s){return (s||"").replace(/"/g,"&quot;");}
+
+async function submit(){
+  collect(); const t=T[lang];
+  if(!name.trim()){ alert(t.need); return; }
+  const btn=document.getElementById("send"); btn.disabled=true; btn.textContent=t.sending;
+  const answers={};
+  Q.forEach(function(q){ if(vals[q.id]!==undefined && vals[q.id]!=="") answers[q.id]={q:q.en, a:vals[q.id]}; });
+  if(vals.ai_comfort) answers.ai_comfort={q:"AI comfort 1-5", a:vals.ai_comfort};
+  if(vals.extra) answers.extra={q:"Anything else", a:vals.extra};
+  try{
+    const r=await fetch(SUPA_URL+"/rest/v1/tesselet_discovery",{
+      method:"POST",
+      headers:{apikey:SUPA_KEY,Authorization:"Bearer "+SUPA_KEY,"Content-Type":"application/json",Prefer:"return=minimal"},
+      body:JSON.stringify({respondent:name.trim(),role:role.trim(),lang:lang,answers:answers})
+    });
+    if(!r.ok) throw new Error();
+    document.getElementById("app").innerHTML='<div class="done"><div class="big">🎉</div><h1>'+t.doneH+'</h1><p style="color:#d7dce1">'+t.doneP+'</p></div>';
+  }catch(e){ alert(t.err); btn.disabled=false; btn.textContent=t.submit; }
+}
+render();
+</script>
+</body>
+</html>
