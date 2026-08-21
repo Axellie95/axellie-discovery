@@ -6,13 +6,14 @@ inga kundrelationer syns i repo-listan.
 
 | Sökväg | Live-URL | Kund |
 |---|---|---|
-| `tesselet/` | https://axellie95.github.io/axellie-discovery/tesselet/ | Tesselet Robotics (2026-08) |
+| `tessellate/` | https://axellie95.github.io/axellie-discovery/tessellate/ | Tessellate Robotics (2026-08) |
+| `tesselet/` | *redirect → `tessellate/`* | Felstavad sökväg som hann gå ut i mejl 2026-08-21. **Ta aldrig bort** — länken lever i mottagarnas inkorgar. |
 
 ## Så funkar formulären
 
 Ett självständigt `index.html` per kund — ingen build, inga beroenden.
 Svaren POSTas direkt till KOSA-Supabase (`oyzrcjrvppzhbuethicc`) via anon-nyckeln,
-en tabell per kund (t.ex. `public.tesselet_discovery`).
+en tabell per kund (t.ex. `public.tessellate_discovery`).
 
 **RLS-mönstret är hela säkerheten:** anon får `INSERT`, aldrig `SELECT`.
 Vem som helst kan alltså svara, ingen kan läsa andras svar — bara Anton, via MCP.
@@ -28,6 +29,9 @@ curl -s "$URL/rest/v1/<tabell>?select=*" \
 
 ## Ny kund
 
+0. **Verifiera kundens stavning mot deras mejldomän innan mappen döps.**
+   Sökvägen hamnar i ett mejl och går inte att ta tillbaka — `tesselet/` är
+   beviset (rätt namn var Tessellate, enligt `@tessellate-robotics.com`).
 1. Kopiera närmaste befintliga mapp, byt frågor, tabellnamn och färger.
 2. Skapa tabellen + RLS-policyn (`insert to anon with check (true)`).
 3. Kör verifieringen ovan, städa bort testraden, pusha.
