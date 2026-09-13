@@ -419,6 +419,106 @@ table.data td.r,table.data th.r{text-align:right}
 .empty-board .eb-empty p{margin:0 auto;font-size:13px;color:var(--muted);max-width:44ch}
 .empty-board .eb-add{display:flex;align-items:center;gap:10px;padding:11px 15px;border-top:1px solid var(--border)}
 
+/* ── Dashboard: widgets that read across every table ─────── */
+.dash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.widget{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);position:relative;overflow:visible}
+.widget.span2{grid-column:1/-1}
+.widget.dragging{opacity:.35}
+.widget.drop-here{box-shadow:0 0 0 2px var(--accent)}
+.widget > header{display:flex;align-items:center;gap:9px;padding:12px 14px;border-bottom:1px solid var(--border)}
+.widget > header .wgrip{cursor:grab;color:var(--muted2);display:flex;padding:2px;border-radius:4px;flex:0 0 auto}
+.widget > header .wgrip:hover{background:var(--card2);color:var(--text2)}
+.widget > header h3{margin:0;font-size:13.5px;font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.widget > header .wsrc{
+  border:1px solid var(--border);background:var(--card2);color:var(--text2);border-radius:999px;
+  padding:3px 10px;font-size:11.5px;font-family:inherit;cursor:pointer;white-space:nowrap;
+}
+.widget > header .wsrc:hover{border-color:var(--border-strong);color:var(--text)}
+.widget > header .wdots{border:none;background:none;cursor:pointer;color:var(--muted);padding:2px 6px;border-radius:5px;font-size:16px;line-height:1}
+.widget > header .wdots:hover{background:var(--card2);color:var(--text)}
+.wbody{padding:14px}
+.wempty{padding:26px 14px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* numbers */
+.wnums{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.wnum .l{font-size:11.5px;color:var(--muted)}
+.wnum .v{font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.2;margin-top:2px}
+.wnum .v.neg{color:var(--neg)}
+
+/* battery */
+.battery{display:flex;height:22px;border-radius:5px;overflow:hidden;background:var(--card2);gap:2px}
+.battery i{display:block;height:100%;position:relative}
+.battery i:first-child{border-radius:5px 0 0 5px}
+.battery i:last-child{border-radius:0 5px 5px 0}
+.batlegend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-size:12px;color:var(--text2)}
+.batlegend span{display:flex;align-items:center;gap:6px}
+.batlegend i{width:10px;height:10px;border-radius:3px;flex:0 0 auto}
+.batlegend b{font-variant-numeric:tabular-nums}
+
+/* bars: workload and by-department */
+.wbars{display:flex;flex-direction:column;gap:9px}
+.wbar{display:flex;align-items:center;gap:10px;font-size:12.5px}
+.wbar .k{width:108px;flex:0 0 auto;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:7px}
+.wbar .track{flex:1;height:20px;background:var(--card2);border-radius:0 4px 4px 0;position:relative}
+.wbar .track i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:var(--s1)}
+.wbar .v{width:34px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:var(--text);flex:0 0 auto}
+
+/* deadlines */
+.wdl{display:flex;flex-direction:column}
+.wdl-b{display:flex;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.wdl-b:last-child{border-bottom:none}
+.wdl-b .n{font-size:19px;font-weight:600;width:34px;font-variant-numeric:tabular-nums}
+.wdl-b .n.late{color:var(--neg)}
+.wdl-b .n.soon{color:var(--warn)}
+.wdl-b .l{font-size:12.5px;color:var(--text2);font-weight:500}
+.wdl-b .x{font-size:11.5px;color:var(--muted);margin-left:auto;text-align:right;max-width:58%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* cross-table list */
+.wlist{width:100%;border-collapse:collapse;font-size:12.5px}
+.wlist th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:7px 10px;border-bottom:1px solid var(--border)}
+.wlist td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.wlist tr:last-child td{border-bottom:none}
+.wlist tr.row{cursor:pointer}
+.wlist tr.row:hover td{background:var(--card3)}
+.wlist .tchip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text2);white-space:nowrap}
+.wlist .tchip i{width:8px;height:8px;border-radius:2px;flex:0 0 auto}
+
+/* popovers: widget menu, table picker, add-widget */
+.wmenu,.wsel{
+  position:absolute;top:42px;right:12px;z-index:70;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--shadow-lg);min-width:210px;padding:5px;
+}
+.wmenu button{display:flex;width:100%;align-items:center;gap:9px;border:none;background:none;text-align:left;padding:7px 9px;border-radius:5px;font-size:13px;color:var(--text2);cursor:pointer;font-family:inherit}
+.wmenu button:hover{background:var(--card2);color:var(--text)}
+.wmenu button.danger{color:var(--neg)}
+.wmenu button.danger:hover{background:var(--neg-bg)}
+.wmenu .sep{height:1px;background:var(--border);margin:4px 2px}
+.wsel{max-height:290px;overflow:auto;min-width:250px}
+.wsel .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:6px 9px 3px}
+.wsel label{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:5px;font-size:13px;cursor:pointer}
+.wsel label:hover{background:var(--card2)}
+.wsel input{accent-color:var(--accent);width:15px;height:15px}
+.wsel .dot{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+.wsel .foot{display:flex;gap:6px;padding:7px 9px 4px;border-top:1px solid var(--border);margin-top:4px}
+
+.wpicker{background:var(--card);border:1px solid var(--accent-border);border-radius:var(--r-lg);box-shadow:var(--shadow-md);padding:14px;margin-bottom:16px}
+.wpicker h3{margin:0 0 3px;font-size:14px;font-weight:600}
+.wpicker p.cap{margin:0 0 12px;font-size:12.5px;color:var(--muted)}
+.wpicker .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}
+.wpicker button.opt{
+  text-align:left;background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:11px 12px;cursor:pointer;font-family:inherit;
+}
+.wpicker button.opt:hover{border-color:var(--accent);background:var(--accent-bg)}
+.wpicker button.opt b{display:block;font-size:13px;color:var(--text)}
+.wpicker button.opt span{display:block;font-size:11.5px;color:var(--muted);margin-top:3px}
+
+@media (max-width:1120px){
+  .dash-grid{grid-template-columns:1fr}
+  .widget.span2{grid-column:auto}
+  .wnums{grid-template-columns:1fr 1fr}
+}
+
 @media (max-width:1120px){
   .tiles{grid-template-columns:repeat(2,1fr)}
   .cols2{grid-template-columns:1fr}
@@ -795,6 +895,7 @@ const PROJ_VIEWS = {
 };
 const VIEWS = [
   {id:"home",      label:"Home",                icon:"i-home",  group:"",            tail:() => MY_ITEMS.length},
+  {id:"dash",      label:"Dashboard",           icon:"i-chart", group:"",            tail:() => DASH.length},
   {id:"tables",    label:"Tables",              icon:"i-board", group:"",            tail:() => TABLES.length},
   {id:"pipeline",  label:"Pipeline",            icon:"i-board", group:"Sales",       dot:"#2a78d6", tail:() => CRM.length},
   {id:"accounts",  label:"Accounts",            icon:"i-users", group:"Sales",       tail:() => CUSTOMERS.length},
@@ -830,7 +931,7 @@ function wireFocus(){
   });
 }
 const ROUTES = {
-  home:() => viewHome(), tables:() => viewTables(), pipeline:() => viewPipeline(), accounts:() => viewAccounts(),
+  home:() => viewHome(), dash:() => viewDashboard(), tables:() => viewTables(), pipeline:() => viewPipeline(), accounts:() => viewAccounts(),
   salesstats:() => viewSalesStats(), field:() => viewProjects("field"),
   stack:() => viewProjects("stack"), grants:() => viewProjects("grants"),
   approvals:() => viewApprovals(), finstats:() => viewFinStats()
@@ -906,6 +1007,7 @@ function viewHome(){
         <p>Your day, and everything waiting on you across every department. Two hours of inbox archaeology replaced by one page.</p>
       </div>
       <span class="sp"></span>
+      <button class="btn" data-view="dash"><svg class="i"><use href="#i-chart"/></svg> Dashboard</button>
       <button class="btn primary"><svg class="i"><use href="#i-plus"/></svg> New item</button>
     </div>
 
@@ -1412,6 +1514,7 @@ function viewTables(){
     <div class="phead">
       <div><h1>Tables</h1><p>Every table in the workspace, grouped by the department that owns it. Add one, rename it, drag it somewhere else, or delete it — this page is the workspace, not a picture of it.</p></div>
       <span class="sp"></span>
+      <button class="btn" data-view="dash"><svg class="i"><use href="#i-chart"/></svg> Dashboard</button>
       <button class="btn primary" data-addopen="Sales"><svg class="i"><use href="#i-plus"/></svg> New table</button>
     </div>
     <div class="tbl-toolbar">
@@ -1636,6 +1739,335 @@ document.addEventListener("drop", e => {
   }
   tblDrag = null;
   viewTables();
+});
+
+/* ═══════════════════════════════════════════════════════════
+   Dashboard — widgets that read across every table at once.
+   Add a widget, point it at the tables you care about, make it
+   wide, drag it, remove it. Nothing here is a picture: every
+   number is counted off the same rows the tables show.
+   ═══════════════════════════════════════════════════════════ */
+
+/* The project tables carry a deadline too, so the date widgets can see them. */
+const PROJ_DUE = {p1:"2026-10-10",p2:"2026-09-18",p3:"2026-11-14",p4:"2026-09-22",
+                  p5:"2026-09-30",p6:"2026-09-16",p9:"2026-09-11",p7:"2026-09-26",p8:"2026-09-09"};
+PROJ.forEach(p => { if (!p.due) p.due = PROJ_DUE[p.id] || null; });
+
+const DONE_STATES = ["Delivered","Approved","Paid","Won","Rejected","Lost"];
+
+const WIDGET_KINDS = {
+  numbers:  {t:"Numbers",             d:"Open items, what is late, and the value behind them"},
+  battery:  {t:"Battery",             d:"How the work sits across statuses, in one bar"},
+  workload: {t:"Workload",            d:"Open items per person, so nobody is quietly buried"},
+  deadlines:{t:"Deadlines",           d:"Late, today, this week, later"},
+  bydept:   {t:"Items by department", d:"Where the open work actually sits"},
+  week:     {t:"Due this week",       d:"One list across every table you point it at"}
+};
+
+let DASH = [
+  {id:"w1", kind:"numbers",   tables:"all", span:2},
+  {id:"w2", kind:"battery",   tables:"all", span:1},
+  {id:"w3", kind:"workload",  tables:"all", span:1},
+  {id:"w4", kind:"deadlines", tables:"all", span:1},
+  {id:"w5", kind:"bydept",    tables:"all", span:1},
+  {id:"w6", kind:"week",      tables:"all", span:2}
+];
+let dashPick = false, dashMenu = null, dashSel = null, dashDrag = null;
+const widgetById = id => DASH.find(w => w.id === id);
+
+/* Every row in the workspace, normalised, whichever table it came from. */
+function allItems(){
+  const out = [];
+  for (const t of TABLES){
+    if (t.view === "pipeline")
+      CRM.forEach(r => out.push({id:r.id, title:r.t, tbl:t, own:r.own, st:STAGE[r.stage], due:r.next, val:r.val}));
+    else if (t.view === "approvals")
+      APPROVALS.forEach(r => out.push({id:r.id, title:r.t, tbl:t, own:[r.who], st:APPR[r.st], due:r.due, val:r.amt}));
+    else if (t.view === "field" || t.view === "stack" || t.view === "grants")
+      projFor(t.view).forEach(r => out.push({id:r.id, title:r.t, tbl:t, own:r.own, st:PHASE[r.phase], due:r.due, val:0}));
+  }
+  return out.map(i => ({...i, open: !DONE_STATES.includes(i.st.t)}));
+}
+const feedTables = () => TABLES.filter(t => t.view);
+function widgetItems(w){
+  const items = allItems();
+  return w.tables === "all" ? items : items.filter(i => w.tables.includes(i.tbl.id));
+}
+const dayDiff = iso => iso ? Math.round((new Date(iso) - TODAY) / 86400000) : null;
+const dueLabel = iso => iso ? new Date(iso).toLocaleDateString("en-CA",{month:"short",day:"numeric"}) : "—";
+
+/* ── The widgets ──────────────────────────────────────────── */
+function wNumbers(w){
+  const items = widgetItems(w), open = items.filter(i => i.open);
+  const late = open.filter(i => dayDiff(i.due) !== null && dayDiff(i.due) < 0);
+  const value = open.filter(i => i.tbl.view === "pipeline").reduce((s,i) => s + (i.val||0), 0);
+  const tables = w.tables === "all" ? feedTables().length : w.tables.filter(id => (tableById(id)||{}).view).length;
+  return `<div class="wnums">
+    <div class="wnum"><div class="l">Open items</div><div class="v">${open.length}</div></div>
+    <div class="wnum"><div class="l">Late</div><div class="v ${late.length?"neg":""}">${late.length}</div></div>
+    <div class="wnum"><div class="l">Pipeline value</div><div class="v">${k$(value)}</div></div>
+    <div class="wnum"><div class="l">Tables feeding this</div><div class="v">${tables}</div></div>
+  </div>`;
+}
+
+const STUCK_STATES = ["Blocked","On hold","Rejected"], NOTSTARTED_STATES = ["Early","Spec"];
+const bucketOf = s => DONE_STATES.includes(s) ? "Done"
+                    : STUCK_STATES.includes(s) ? "Stuck"
+                    : NOTSTARTED_STATES.includes(s) ? "Not started" : "Working on it";
+
+function wBattery(w){
+  const items = widgetItems(w);
+  if (!items.length) return `<div class="wempty">No rows in the tables you picked.</div>`;
+  const buckets = {
+    "Not started":  {n:0, c:"#6B6660"},
+    "Working on it":{n:0, c:"#1F63B4"},
+    "Stuck":        {n:0, c:"#B32B2B"},
+    "Done":         {n:0, c:"#0A7A2E"}
+  };
+  items.forEach(i => buckets[bucketOf(i.st.t)].n++);
+  const order = Object.entries(buckets).filter(e => e[1].n > 0);
+  const total = items.length;
+  const done = items.filter(i => !i.open).length;
+  return `<div class="battery">
+      ${order.map(([k,v]) => `<i style="background:${v.c};width:${(v.n/total*100).toFixed(1)}%" title="${esc(k)}: ${v.n}"></i>`).join("")}
+    </div>
+    <div class="batlegend">
+      ${order.map(([k,v]) => `<span><i style="background:${v.c}"></i>${esc(k)} <b>${v.n}</b> <span style="color:var(--muted)">${Math.round(v.n/total*100)}%</span></span>`).join("")}
+    </div>
+    <p style="margin:12px 0 0;font-size:12px;color:var(--muted)">${done} of ${total} rows are finished or closed.</p>`;
+}
+
+function wWorkload(w){
+  const open = widgetItems(w).filter(i => i.open);
+  const per = {};
+  open.forEach(i => i.own.forEach(k => per[k] = (per[k]||0) + 1));
+  const rows = Object.entries(per).sort((a,b) => b[1]-a[1]);
+  if (!rows.length) return `<div class="wempty">Nothing open in these tables.</div>`;
+  const max = rows[0][1];
+  return `<div class="wbars">${rows.map(([k,n]) => `
+    <div class="wbar">
+      <span class="k">${av(k,"sm")}${esc(P[k].n.split(" ")[0])}</span>
+      <span class="track"><i style="width:${(n/max*100).toFixed(1)}%"></i></span>
+      <span class="v">${n}</span>
+    </div>`).join("")}</div>`;
+}
+
+function wByDept(w){
+  const open = widgetItems(w).filter(i => i.open);
+  const rows = DEPTS.map(d => [d, open.filter(i => i.tbl.dept === d).length]).filter(r => r[1] > 0);
+  if (!rows.length) return `<div class="wempty">Nothing open in these tables.</div>`;
+  const max = Math.max(...rows.map(r => r[1]));
+  return `<div class="wbars">${rows.map(([d,n]) => `
+    <div class="wbar">
+      <span class="k"><span class="dot" style="width:9px;height:9px;border-radius:2px;background:${DEPT_COLOR[d]}"></span>${esc(d)}</span>
+      <span class="track"><i style="width:${(n/max*100).toFixed(1)}%;background:${DEPT_COLOR[d]}"></i></span>
+      <span class="v">${n}</span>
+    </div>`).join("")}</div>`;
+}
+
+function wDeadlines(w){
+  const open = widgetItems(w).filter(i => i.open && i.due);
+  const late = open.filter(i => dayDiff(i.due) < 0).sort((a,b) => a.due.localeCompare(b.due));
+  const today = open.filter(i => dayDiff(i.due) === 0);
+  const week = open.filter(i => dayDiff(i.due) > 0 && dayDiff(i.due) <= 7).sort((a,b) => a.due.localeCompare(b.due));
+  const later = open.filter(i => dayDiff(i.due) > 7);
+  const row = (n, label, cls, first) => `<div class="wdl-b">
+      <span class="n ${cls}">${n}</span><span class="l">${label}</span>
+      <span class="x">${first ? esc(first.title) : ""}</span></div>`;
+  return `<div class="wdl">
+    ${row(late.length, "Late", "late", late[0])}
+    ${row(today.length, "Today", "soon", today[0])}
+    ${row(week.length, "Next seven days", "soon", week[0])}
+    ${row(later.length, "Later", "", later[0])}
+  </div>`;
+}
+
+function wWeek(w){
+  const open = widgetItems(w).filter(i => i.open && i.due && dayDiff(i.due) <= 7)
+    .sort((a,b) => a.due.localeCompare(b.due));
+  if (!open.length) return `<div class="wempty">Nothing due in the next seven days.</div>`;
+  return `<table class="wlist">
+    <thead><tr><th>Item</th><th>Table</th><th>Owner</th><th>Status</th><th>Due</th></tr></thead>
+    <tbody>${open.map(i => {
+      const d = dayDiff(i.due);
+      return `<tr class="row" data-item="${i.id}">
+        <td>${esc(i.title)}</td>
+        <td><span class="tchip"><i style="background:${i.tbl.color}"></i>${esc(i.tbl.name)}</span></td>
+        <td>${people(i.own)}</td>
+        <td><span class="tag" style="background:${i.st.c};color:#fff;font-weight:600">${esc(i.st.t)}</span></td>
+        <td><span class="datefill ${d<0?"over":d<=3?"soon":""}">${dueLabel(i.due)}${d<0?" · late":""}</span></td>
+      </tr>`;
+    }).join("")}</tbody></table>`;
+}
+
+const WIDGET_BODY = {numbers:wNumbers, battery:wBattery, workload:wWorkload,
+                     deadlines:wDeadlines, bydept:wByDept, week:wWeek};
+
+/* ── The page ─────────────────────────────────────────────── */
+function viewDashboard(){
+  const cards = DASH.map(w => {
+    const kind = WIDGET_KINDS[w.kind];
+    const src = w.tables === "all"
+      ? "All tables"
+      : (w.tables.length === 1 ? (tableById(w.tables[0])||{name:"1 table"}).name : w.tables.length + " tables");
+    return `<section class="widget ${w.span===2?"span2":""}" data-wid="${w.id}">
+      <header draggable="true">
+        <span class="wgrip" title="Drag to reorder" aria-hidden="true"><svg class="i" style="width:13px;height:13px"><use href="#i-grip"/></svg></span>
+        <h3>${esc(kind.t)}</h3>
+        <button class="wsrc" data-wsel="${w.id}" title="Choose which tables feed this widget">${esc(src)} ▾</button>
+        <button class="wdots" data-wmenu="${w.id}" aria-label="Widget options">⋮</button>
+      </header>
+      <div class="wbody">${WIDGET_BODY[w.kind](w)}</div>
+      ${dashMenu === w.id ? widgetMenu(w) : ""}
+      ${dashSel === w.id ? tableSelector(w) : ""}
+    </section>`;
+  }).join("");
+
+  $("#view").innerHTML = `
+    <div class="phead">
+      <div><h1>Dashboard</h1><p>One screen over every table. Each widget reads the same rows the tables hold, so a number here can never disagree with the table it came from.</p></div>
+      <span class="sp"></span>
+      <button class="btn" data-view="tables"><svg class="i"><use href="#i-board"/></svg> Tables</button>
+      <button class="btn primary" data-wadd="1"><svg class="i"><use href="#i-plus"/></svg> Add widget</button>
+    </div>
+    ${dashPick ? widgetPicker() : ""}
+    <div class="dash-grid">${cards}</div>
+    ${DASH.length ? "" : `<div class="wempty" style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:44px">
+        No widgets yet. Add the first one.</div>`}`;
+}
+
+function widgetPicker(){
+  return `<div class="wpicker">
+    <h3>Add a widget</h3>
+    <p class="cap">Pick what it should show. You choose which tables feed it afterwards.</p>
+    <div class="opts">
+      ${Object.entries(WIDGET_KINDS).map(([k,v]) =>
+        `<button class="opt" data-wkind="${k}"><b>${esc(v.t)}</b><span>${esc(v.d)}</span></button>`).join("")}
+    </div>
+    <div style="margin-top:12px"><button class="btn sm" data-wcancel="1">Cancel</button></div>
+  </div>`;
+}
+
+function widgetMenu(w){
+  return `<div class="wmenu">
+    <button data-wspan="${w.id}"><svg class="i"><use href="#i-board"/></svg> ${w.span === 2 ? "Make it narrow" : "Make it full width"}</button>
+    <button data-wdup="${w.id}"><svg class="i"><use href="#i-plus"/></svg> Duplicate</button>
+    <button data-wsel="${w.id}"><svg class="i"><use href="#i-board"/></svg> Choose tables</button>
+    <div class="sep"></div>
+    <button class="danger" data-wdel="${w.id}"><svg class="i"><use href="#i-x"/></svg> Remove widget</button>
+  </div>`;
+}
+
+function tableSelector(w){
+  const on = id => w.tables === "all" || w.tables.includes(id);
+  return `<div class="wsel">
+    <div class="lab">Tables feeding this widget</div>
+    ${feedTables().map(t => `<label>
+      <input type="checkbox" data-wtbl="${w.id}:${t.id}" ${on(t.id)?"checked":""}>
+      <span class="dot" style="background:${t.color}"></span>${esc(t.name)}
+      <span style="margin-left:auto;font-size:11.5px;color:var(--muted)">${t.dept}</span>
+    </label>`).join("")}
+    <div class="foot">
+      <button class="btn sm" data-wall="${w.id}">All tables</button>
+      <button class="btn sm" data-wnone="${w.id}">None</button>
+      <span style="flex:1"></span>
+      <button class="btn sm primary" data-wselclose="1">Done</button>
+    </div>
+  </div>`;
+}
+
+/* ── Interaction ──────────────────────────────────────────── */
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-wadd]")){ dashPick = true; dashMenu = dashSel = null;
+    if (current !== "dash") go("dash"); else viewDashboard(); return; }
+  if (e.target.closest("[data-wcancel]")){ dashPick = false; viewDashboard(); return; }
+
+  const kind = e.target.closest("[data-wkind]");
+  if (kind){
+    DASH.push({id:"w" + Date.now(), kind:kind.dataset.wkind, tables:"all", span:kind.dataset.wkind === "week" ? 2 : 1});
+    dashPick = false; viewDashboard(); renderNav(); return;
+  }
+  const wm = e.target.closest("[data-wmenu]");
+  if (wm){ dashMenu = dashMenu === wm.dataset.wmenu ? null : wm.dataset.wmenu; dashSel = null; viewDashboard(); return; }
+
+  const ws = e.target.closest("[data-wsel]");
+  if (ws){ dashSel = dashSel === ws.dataset.wsel ? null : ws.dataset.wsel; dashMenu = null; viewDashboard(); return; }
+  if (e.target.closest("[data-wselclose]")){ dashSel = null; viewDashboard(); return; }
+
+  const sp = e.target.closest("[data-wspan]");
+  if (sp){ const w = widgetById(sp.dataset.wspan); if (w) w.span = w.span === 2 ? 1 : 2; dashMenu = null; viewDashboard(); return; }
+
+  const dup = e.target.closest("[data-wdup]");
+  if (dup){
+    const w = widgetById(dup.dataset.wdup), i = DASH.indexOf(w);
+    if (w) DASH.splice(i + 1, 0, {...w, id:"w" + Date.now()});
+    dashMenu = null; viewDashboard(); renderNav(); return;
+  }
+  const wd = e.target.closest("[data-wdel]");
+  if (wd){
+    const i = DASH.findIndex(w => w.id === wd.dataset.wdel);
+    if (i > -1) DASH.splice(i, 1);
+    dashMenu = null; viewDashboard(); renderNav(); return;
+  }
+  const all = e.target.closest("[data-wall]");
+  if (all){ const w = widgetById(all.dataset.wall); if (w) w.tables = "all"; viewDashboard(); return; }
+  const none = e.target.closest("[data-wnone]");
+  if (none){ const w = widgetById(none.dataset.wnone); if (w) w.tables = []; viewDashboard(); return; }
+
+  if ((dashMenu || dashSel) && !e.target.closest(".wmenu") && !e.target.closest(".wsel")
+      && !e.target.closest("[data-wmenu]") && !e.target.closest("[data-wsel]")){
+    dashMenu = dashSel = null;
+    if (current === "dash") viewDashboard();
+  }
+});
+
+document.addEventListener("change", e => {
+  const box = e.target.closest("[data-wtbl]");
+  if (!box) return;
+  const [wid, tid] = box.dataset.wtbl.split(":");
+  const w = widgetById(wid);
+  if (!w) return;
+  let list = w.tables === "all" ? feedTables().map(t => t.id) : [...w.tables];
+  list = box.checked ? [...new Set([...list, tid])] : list.filter(x => x !== tid);
+  w.tables = list.length === feedTables().length ? "all" : list;
+  viewDashboard();
+});
+
+/* Drag a widget by its header to reorder the dashboard. */
+document.addEventListener("dragstart", e => {
+  const head = e.target.closest(".widget > header");
+  if (!head) return;
+  const card = head.parentElement;
+  dashDrag = card.dataset.wid;
+  card.classList.add("dragging");
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text/plain", dashDrag);
+});
+document.addEventListener("dragend", () => {
+  dashDrag = null;
+  document.querySelectorAll(".widget.dragging,.widget.drop-here")
+    .forEach(el => el.classList.remove("dragging","drop-here"));
+});
+document.addEventListener("dragover", e => {
+  if (!dashDrag) return;
+  const card = e.target.closest(".widget");
+  if (!card || card.dataset.wid === dashDrag) return;
+  e.preventDefault();
+  document.querySelectorAll(".widget.drop-here").forEach(el => el.classList.remove("drop-here"));
+  card.classList.add("drop-here");
+});
+document.addEventListener("drop", e => {
+  if (!dashDrag) return;
+  const card = e.target.closest(".widget");
+  if (!card || card.dataset.wid === dashDrag) return;
+  e.preventDefault();
+  const from = DASH.findIndex(w => w.id === dashDrag);
+  const moved = DASH[from];
+  DASH.splice(from, 1);
+  const to = DASH.findIndex(w => w.id === card.dataset.wid);
+  DASH.splice(to < 0 ? DASH.length : to, 0, moved);
+  dashDrag = null;
+  viewDashboard();
 });
 
 function showDetail(html){
