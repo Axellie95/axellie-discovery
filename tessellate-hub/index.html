@@ -329,6 +329,96 @@ table.data td.r,table.data th.r{text-align:right}
 .note{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--r);padding:12px 14px;font-size:13px;color:var(--accent-dark);margin-bottom:20px}
 .note b{font-weight:600}
 
+/* ── Tables: every table in the workspace, in one place ───── */
+.tbl-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.tbl-search{position:relative;flex:1;min-width:180px;max-width:340px}
+.tbl-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.tbl-search input{
+  width:100%;padding:8px 10px 8px 32px;border:1px solid var(--border);border-radius:var(--r);
+  background:var(--card);font-size:13px;color:var(--text);font-family:inherit;
+}
+.tbl-search input:focus{outline:2px solid var(--accent-bg);border-color:var(--accent)}
+.tbl-hint{font-size:12px;color:var(--muted)}
+
+.tbl-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);margin-bottom:14px;overflow:visible}
+.tbl-section.drag-over{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.tbl-section > header{display:flex;align-items:center;gap:9px;padding:11px 15px;border-bottom:1px solid var(--border);background:var(--card3);border-radius:var(--r-lg) var(--r-lg) 0 0}
+.tbl-section > header .bar{width:4px;height:15px;border-radius:2px;flex:0 0 auto}
+.tbl-section > header h2{margin:0;font-size:13px;font-weight:600;letter-spacing:.01em}
+.tbl-section > header .sp{flex:1}
+
+.tbl-row{display:flex;align-items:center;gap:11px;padding:10px 15px;border-bottom:1px solid var(--border);position:relative;background:var(--card)}
+.tbl-row:last-of-type{border-bottom:none}
+.tbl-row:hover{background:var(--card3)}
+.tbl-row.dragging{opacity:.35}
+.tbl-row.drop-here{box-shadow:inset 0 2px 0 0 var(--accent)}
+.tbl-grip{cursor:grab;color:var(--muted2);flex:0 0 auto;display:flex;padding:2px;border-radius:4px}
+.tbl-grip:hover{background:var(--card2);color:var(--text2)}
+.tbl-ico{width:26px;height:26px;border-radius:6px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:#fff}
+.tbl-ico svg{width:15px;height:15px;stroke:#fff}
+.tbl-main{flex:1;min-width:0}
+.tbl-name{
+  background:none;border:none;padding:0;font-family:inherit;font-size:13.5px;font-weight:600;
+  color:var(--text);cursor:pointer;text-align:left;max-width:100%;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;
+}
+.tbl-name:hover{color:var(--accent-dark);text-decoration:underline}
+.tbl-name:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.tbl-sub{font-size:11.5px;color:var(--muted);margin-top:2px}
+.tbl-count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;width:58px;text-align:right;flex:0 0 auto}
+.tbl-star{border:none;background:none;cursor:pointer;color:var(--border-strong);padding:3px;border-radius:5px;flex:0 0 auto;display:flex}
+.tbl-star:hover{background:var(--card2);color:var(--warn)}
+.tbl-star.on{color:var(--warn)}
+.tbl-dots{border:none;background:none;cursor:pointer;color:var(--muted);padding:3px 7px;border-radius:5px;font-size:16px;line-height:1;flex:0 0 auto}
+.tbl-dots:hover{background:var(--card2);color:var(--text)}
+
+.tbl-menu{
+  position:absolute;top:40px;right:12px;z-index:60;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--shadow-lg);min-width:184px;padding:5px;
+}
+.tbl-menu button{
+  display:flex;width:100%;align-items:center;gap:9px;border:none;background:none;text-align:left;
+  padding:7px 9px;border-radius:5px;font-size:13px;color:var(--text2);cursor:pointer;font-family:inherit;
+}
+.tbl-menu button:hover{background:var(--card2);color:var(--text)}
+.tbl-menu button.danger{color:var(--neg)}
+.tbl-menu button.danger:hover{background:var(--neg-bg)}
+.tbl-menu .sep{height:1px;background:var(--border);margin:4px 2px}
+.tbl-menu .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:6px 9px 3px}
+
+.tbl-confirm{display:flex;align-items:center;gap:10px;padding:10px 15px;background:var(--neg-bg);border-bottom:1px solid var(--border);font-size:13px;color:var(--neg)}
+.tbl-confirm .sp{flex:1}
+.tbl-rename{
+  width:100%;padding:5px 8px;border:1px solid var(--accent);border-radius:5px;font-family:inherit;
+  font-size:13.5px;font-weight:600;color:var(--text);background:var(--card);
+}
+.tbl-rename:focus{outline:2px solid var(--accent-bg)}
+.tbl-add{display:flex;align-items:center;gap:10px;padding:9px 15px;border-top:1px solid var(--border)}
+.tbl-addbtn{
+  border:none;background:none;color:var(--muted);font-family:inherit;font-size:13px;cursor:pointer;
+  display:flex;align-items:center;gap:7px;padding:3px 6px;border-radius:5px;
+}
+.tbl-addbtn:hover{background:var(--card2);color:var(--accent-dark)}
+.tbl-addform{display:flex;align-items:center;gap:8px;flex:1}
+.tbl-addform input{
+  flex:1;padding:6px 9px;border:1px solid var(--accent);border-radius:5px;font-family:inherit;font-size:13px;
+  background:var(--card);color:var(--text);
+}
+.tbl-addform input:focus{outline:2px solid var(--accent-bg)}
+
+/* Empty table — what a brand new table looks like */
+.empty-board{padding:0}
+.empty-board .eb-head{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--card3)}
+.empty-board .eb-head span{
+  flex:1;padding:8px 12px;font-size:11px;font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em;border-right:1px solid var(--border);
+}
+.empty-board .eb-head span:last-child{border-right:none}
+.empty-board .eb-empty{padding:44px 20px;text-align:center}
+.empty-board .eb-empty h3{margin:0 0 5px;font-size:15px;font-weight:600}
+.empty-board .eb-empty p{margin:0 auto;font-size:13px;color:var(--muted);max-width:44ch}
+.empty-board .eb-add{display:flex;align-items:center;gap:10px;padding:11px 15px;border-top:1px solid var(--border)}
+
 @media (max-width:1120px){
   .tiles{grid-template-columns:repeat(2,1fr)}
   .cols2{grid-template-columns:1fr}
@@ -375,6 +465,8 @@ table.data td.r,table.data th.r{text-align:right}
 <symbol id="i-cash" viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/></symbol>
 <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3.5v3M14 3.5v3M10 17.5v3M14 17.5v3M3.5 10h3M3.5 14h3M17.5 10h3M17.5 14h3"/></symbol>
 <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h10v9H3z"/><path d="M13 10.5h4l3 3v2.5h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
+<symbol id="i-grip" viewBox="0 0 24 24"><circle cx="9" cy="5.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="9" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="9" cy="18.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="5.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="18.5" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4.2l2.45 5.1 5.55.75-4.05 3.9.98 5.45L12 16.75 7.07 19.4l.98-5.45L4 10.05l5.55-.75z"/></symbol>
 </defs></svg>
 
 <div class="ribbon">
@@ -605,7 +697,7 @@ const MY_ITEMS = [
 const NOTIFS = [
   {who:"PH",txt:"mentioned you on <b>Shaft 4 expansion</b>: Astrid asked for the uptime numbers before Thursday.",t:"12 min ago",unread:true},
   {who:"VB",txt:"sent <b>Tundra Logistics — freight, August</b> for your approval.",t:"1 hour ago",unread:true},
-  {who:"SYS",txt:"extracted 3 tasks from <b>Weekly pipeline review</b> and put them on the boards.",t:"3 hours ago",unread:true},
+  {who:"SYS",txt:"extracted 3 tasks from <b>Weekly pipeline review</b> and put them on the tables.",t:"3 hours ago",unread:true},
   {who:"PL",txt:"moved <b>Cascade demo rig shipping</b> to Blocked — the carrier has no slot before the 24th.",t:"yesterday",unread:false}
 ];
 
@@ -697,12 +789,13 @@ const PROJ_VIEWS = {
   field:{title:"Field deployments", dept:"Operations", members:["PL","PH"],
     desc:"Installs, surveys and service visits, grouped by where each one stands, so a blocked job cannot hide."},
   stack:{title:"Autonomy stack", dept:"Engineering", members:["PH","BT"],
-    desc:"Engineering work with the JIRA key beside it. Tickets stay in JIRA — this board references them and never copies them."},
+    desc:"Engineering work with the JIRA key beside it. Tickets stay in JIRA — this table references them and never copies them."},
   grants:{title:"Grant programs", dept:"Finance", members:["VB","DB"],
     desc:"Applications and reporting, with the deadline visible. Vincent owns these; Dominic signs them."}
 };
 const VIEWS = [
   {id:"home",      label:"Home",                icon:"i-home",  group:"",            tail:() => MY_ITEMS.length},
+  {id:"tables",    label:"Tables",              icon:"i-board", group:"",            tail:() => TABLES.length},
   {id:"pipeline",  label:"Pipeline",            icon:"i-board", group:"Sales",       dot:"#2a78d6", tail:() => CRM.length},
   {id:"accounts",  label:"Accounts",            icon:"i-users", group:"Sales",       tail:() => CUSTOMERS.length},
   {id:"salesstats",label:"Sales statistics",    icon:"i-chart", group:"Sales"},
@@ -737,18 +830,19 @@ function wireFocus(){
   });
 }
 const ROUTES = {
-  home:() => viewHome(), pipeline:() => viewPipeline(), accounts:() => viewAccounts(),
+  home:() => viewHome(), tables:() => viewTables(), pipeline:() => viewPipeline(), accounts:() => viewAccounts(),
   salesstats:() => viewSalesStats(), field:() => viewProjects("field"),
   stack:() => viewProjects("stack"), grants:() => viewProjects("grants"),
   approvals:() => viewApprovals(), finstats:() => viewFinStats()
 };
 function go(id, skipHash){
-  if (!ROUTES[id]) id = "home";
-  current = id; renderNav();
+  const tbl = id && id.indexOf("table:") === 0 ? tableById(id.slice(6)) : null;
+  if (!tbl && !ROUTES[id]) id = "home";
+  current = tbl ? "tables" : id; renderNav();
   $("#scroll").scrollTop = 0;
   $("#nav").classList.remove("open");
   if (!skipHash && location.hash.slice(1) !== id) location.hash = id;
-  ROUTES[id]();
+  if (tbl) viewTable(tbl); else ROUTES[id]();
   wireFocus();
 }
 window.addEventListener("hashchange", () => {
@@ -835,11 +929,11 @@ function viewHome(){
     <div class="cols2">
       <section class="panel">
         <header><h2>My items</h2><span class="pill">${MY_ITEMS.length}</span><span class="sp"></span>
-          <span class="hint">Across every board</span></header>
+          <span class="hint">Across every table</span></header>
         <div class="rows">${items}</div>
       </section>
       <section class="panel">
-        <header><h2>Where work lives</h2><span class="sp"></span><button class="btn sm"><svg class="i"><use href="#i-plus"/></svg> New board</button></header>
+        <header><h2>Tables</h2><span class="sp"></span><button class="btn sm" data-addopen="Sales"><svg class="i"><use href="#i-plus"/></svg> New table</button></header>
         <div class="rows">${boards}</div>
       </section>
     </div>
@@ -878,7 +972,7 @@ function boardShell(key, title, desc, members, body){
     <section class="panel">
       <div class="toolbar">
         <div class="tabs">
-          <button class="tab ${boardMode[key]==="table"?"on":""}" data-mode="${key}:table">Table</button>
+          <button class="tab ${boardMode[key]==="table"?"on":""}" data-mode="${key}:table">Main table</button>
           <button class="tab ${boardMode[key]==="kanban"?"on":""}" data-mode="${key}:kanban">Kanban</button>
         </div>
         <span class="sp" style="flex:1"></span>
@@ -1023,7 +1117,7 @@ function viewAccounts(){
   }).join("");
   $("#view").innerHTML = `
     <div class="phead">
-      <div><h1>Accounts</h1><p>One record per company, with the numbers, the people and every board item that points at it. The boards link here; they never keep their own copy.</p></div>
+      <div><h1>Accounts</h1><p>One record per company, with the numbers, the people and every board item that points at it. The tables link here; they never keep their own copy.</p></div>
       <span class="sp"></span>
       <button class="btn primary"><svg class="i"><use href="#i-plus"/></svg> New account</button>
     </div>
@@ -1058,7 +1152,7 @@ function openCustomer(id){
           <div style="flex:1"><div class="fn">${esc(p.n)}</div><div class="fm">${esc(p.t)} · ${esc(p.e)}</div></div>
           <button class="icon-btn" aria-label="Email"><svg class="i"><use href="#i-mail"/></svg></button>
         </div>`).join("")}
-      <h3 class="sec">On boards <span class="pill">${items.length}</span></h3>
+      <h3 class="sec">On tables <span class="pill">${items.length}</span></h3>
       <div class="rows" style="border:1px solid var(--border);border-radius:8px">
         ${items.map(i => `<div class="rowitem">
           <span class="dot" style="width:8px;height:8px;border-radius:2px;background:${i.c}"></span>
@@ -1181,7 +1275,7 @@ function drawStages(mode){
   const table = `<table class="data"><thead><tr><th>Stage</th><th class="r">Items</th><th class="r">Value</th></tr></thead><tbody>
     ${d.map(x => `<tr><td>${esc(x.k)}</td><td class="r">${x.n}</td><td class="r">${cad(x.v)}</td></tr>`).join("")}
     </tbody></table>`;
-  $("#fig-stage").innerHTML = figHead("stage","Open pipeline by stage","Counted straight off the pipeline board, CAD.")
+  $("#fig-stage").innerHTML = figHead("stage","Open pipeline by stage","Counted straight off the Pipeline table, CAD.")
     + (mode === "table" ? table : chart);
 }
 
@@ -1244,6 +1338,306 @@ function drawProducts(mode){
 /* ═══════════════════════════════════════════════════════════
    Detail panel
    ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   Tables — every table in the workspace, in one place.
+   Add one, rename it, duplicate it, star it, drag it into
+   another department, delete it. The list below is the state;
+   nothing here is read-only.
+   ═══════════════════════════════════════════════════════════ */
+const DEPTS = ["Sales","Operations","Engineering","Finance"];
+const DEPT_COLOR = {Sales:"#2a78d6", Operations:"#eb6834", Engineering:"#4a3aa7", Finance:"#eda100"};
+
+const TABLES = [
+  {id:"t1",name:"Pipeline",dept:"Sales",icon:"i-board",color:"#2a78d6",view:"pipeline",
+   members:["DB","PH","PL","VB"],last:"12 min ago",fav:true,note:"Customers, prospects and partners"},
+  {id:"t2",name:"Trade shows 2027",dept:"Sales",icon:"i-board",color:"#14657C",view:null,
+   members:["DB"],last:"just created",fav:false,note:"Where to be, who goes, what it costs"},
+  {id:"t3",name:"Field deployments",dept:"Operations",icon:"i-truck",color:"#eb6834",view:"field",
+   members:["PL","PH"],last:"yesterday",fav:true,note:"Installs, surveys, service visits"},
+  {id:"t4",name:"Supplier follow-up",dept:"Operations",icon:"i-board",color:"#6B6660",view:null,
+   members:["PL","VB"],last:"just created",fav:false,note:"Lead times and open questions"},
+  {id:"t5",name:"Autonomy stack",dept:"Engineering",icon:"i-cpu",color:"#4a3aa7",view:"stack",
+   members:["PH","BT"],last:"2 days ago",fav:false,note:"JIRA referenced, never copied"},
+  {id:"t6",name:"Invoices & expenses",dept:"Finance",icon:"i-cash",color:"#eda100",view:"approvals",
+   members:["VB","DB"],last:"1 hour ago",fav:true,note:"Everything that waits for a decision"},
+  {id:"t7",name:"Grant programs",dept:"Finance",icon:"i-board",color:"#1baf7a",view:"grants",
+   members:["VB","DB"],last:"5 days ago",fav:false,note:"Applications and reporting"},
+  {id:"t8",name:"Board meetings",dept:"Finance",icon:"i-board",color:"#6B6660",view:null,
+   members:["DB","VB"],last:"just created",fav:false,note:"Agendas, decisions, follow-ups"}
+];
+const tableById = id => TABLES.find(t => t.id === id);
+const tableRows = t => {
+  if (t.view === "pipeline") return CRM.length;
+  if (t.view === "approvals") return APPROVALS.length;
+  if (t.view === "field") return projFor("field").length;
+  if (t.view === "stack") return projFor("stack").length;
+  if (t.view === "grants") return projFor("grants").length;
+  return 0;
+};
+
+/* UI state for this page only */
+let tblMenu = null, tblRename = null, tblConfirm = null, tblAdd = null, tblQuery = "";
+
+function viewTables(){
+  const q = tblQuery.trim().toLowerCase();
+  const match = t => !q || t.name.toLowerCase().includes(q) || t.note.toLowerCase().includes(q);
+  const shown = TABLES.filter(match);
+
+  const sections = DEPTS.map(dept => {
+    const rows = shown.filter(t => t.dept === dept);
+    return `
+      <section class="tbl-section" data-dept="${dept}">
+        <header>
+          <span class="bar" style="background:${DEPT_COLOR[dept]}"></span>
+          <h2>${esc(dept)}</h2>
+          <span class="pill">${rows.length}</span>
+          <span class="sp"></span>
+          <span class="tbl-hint">${rows.reduce((s,t) => s + tableRows(t), 0)} rows in total</span>
+        </header>
+        ${rows.map(t => tableRow(t)).join("")
+          || `<div style="padding:14px 15px;font-size:12.5px;color:var(--muted2)">No tables here. Drag one in, or add one below.</div>`}
+        ${q ? "" : `<div class="tbl-add">${
+          tblAdd === dept
+            ? `<form class="tbl-addform" data-addform="${dept}">
+                 <input type="text" name="tname" placeholder="Name the table, then press Enter" autofocus autocomplete="off">
+                 <button class="btn sm primary" type="submit">Add</button>
+                 <button class="btn sm" type="button" data-addcancel="1">Cancel</button>
+               </form>`
+            : `<button class="tbl-addbtn" data-addopen="${dept}"><svg class="i"><use href="#i-plus"/></svg> Add a table to ${esc(dept)}</button>`
+        }</div>`}
+      </section>`;
+  }).join("");
+
+  $("#view").innerHTML = `
+    <div class="phead">
+      <div><h1>Tables</h1><p>Every table in the workspace, grouped by the department that owns it. Add one, rename it, drag it somewhere else, or delete it — this page is the workspace, not a picture of it.</p></div>
+      <span class="sp"></span>
+      <button class="btn primary" data-addopen="Sales"><svg class="i"><use href="#i-plus"/></svg> New table</button>
+    </div>
+    <div class="tbl-toolbar">
+      <div class="tbl-search">
+        <svg class="i"><use href="#i-search"/></svg>
+        <input type="search" id="tbl-q" placeholder="Search tables…" value="${esc(tblQuery)}" autocomplete="off">
+      </div>
+      <span class="tbl-hint">${TABLES.length} tables · ${TABLES.filter(t => t.fav).length} starred · drag the handle to reorder or to move a table between departments</span>
+    </div>
+    ${sections}`;
+
+  const qi = document.getElementById("tbl-q");
+  if (qi && q){ qi.focus(); qi.setSelectionRange(qi.value.length, qi.value.length); }
+}
+
+function tableRow(t){
+  if (tblConfirm === t.id){
+    return `<div class="tbl-confirm">
+      <svg class="i"><use href="#i-x"/></svg>
+      <span>Delete <b>${esc(t.name)}</b>? Everyone in the workspace loses it.</span>
+      <span class="sp"></span>
+      <button class="btn sm" data-delcancel="1">Keep it</button>
+      <button class="btn sm primary" style="background:var(--neg);border-color:var(--neg)" data-delyes="${t.id}">Delete</button>
+    </div>`;
+  }
+  const rows = tableRows(t);
+  return `<div class="tbl-row" draggable="true" data-tid="${t.id}">
+    <span class="tbl-grip" title="Drag to reorder or to another department" aria-hidden="true">
+      <svg class="i" style="width:13px;height:13px"><use href="#i-grip"/></svg></span>
+    <span class="tbl-ico" style="background:${t.color}"><svg><use href="#${t.icon}"/></svg></span>
+    <div class="tbl-main">
+      ${tblRename === t.id
+        ? `<form data-renameform="${t.id}"><input class="tbl-rename" name="tname" value="${esc(t.name)}" autofocus autocomplete="off"></form>`
+        : `<button class="tbl-name" data-open="${t.id}">${esc(t.name)}</button>`}
+      <div class="tbl-sub">${esc(t.note)} · last change ${esc(t.last)}</div>
+    </div>
+    <span class="tbl-count">${rows ? rows + " rows" : "empty"}</span>
+    <span class="people">${t.members.map(k => av(k,"sm")).join("")}</span>
+    <button class="tbl-star ${t.fav?"on":""}" data-star="${t.id}" aria-label="Star this table" title="${t.fav?"Starred":"Star this table"}">
+      <svg class="i" style="fill:${t.fav?"currentColor":"none"}"><use href="#i-star"/></svg></button>
+    <button class="tbl-dots" data-dots="${t.id}" aria-label="More">⋮</button>
+    ${tblMenu === t.id ? tableMenu(t) : ""}
+  </div>`;
+}
+
+function tableMenu(t){
+  return `<div class="tbl-menu">
+    <button data-open="${t.id}"><svg class="i"><use href="#i-board"/></svg> Open</button>
+    <button data-rename="${t.id}"><svg class="i"><use href="#i-file"/></svg> Rename</button>
+    <button data-dup="${t.id}"><svg class="i"><use href="#i-plus"/></svg> Duplicate</button>
+    <div class="sep"></div>
+    <div class="lab">Move to</div>
+    ${DEPTS.filter(d => d !== t.dept).map(d =>
+      `<button data-move="${t.id}:${d}"><span class="dot" style="width:8px;height:8px;border-radius:2px;background:${DEPT_COLOR[d]}"></span> ${esc(d)}</button>`).join("")}
+    <div class="sep"></div>
+    <button class="danger" data-del="${t.id}"><svg class="i"><use href="#i-x"/></svg> Delete table</button>
+  </div>`;
+}
+
+/* A table with nothing in it yet — what you land on after adding one. */
+function viewTable(t){
+  const cols = ["Item","Owner","Status","Due date","Notes"];
+  $("#view").innerHTML = `
+    <div class="phead">
+      <div><h1>${esc(t.name)}</h1><p>${esc(t.note)} · ${esc(t.dept)}</p></div>
+      <span class="sp"></span>
+      <div class="people" style="margin-right:8px">${t.members.map(k => av(k,"sm")).join("")}</div>
+      <button class="btn" data-view="tables">Back to tables</button>
+      <button class="btn primary"><svg class="i"><use href="#i-plus"/></svg> New item</button>
+    </div>
+    <section class="panel">
+      <div class="toolbar">
+        <div class="tabs">
+          <button class="tab on">Main table</button>
+          <button class="tab">Kanban</button>
+        </div>
+        <span class="sp" style="flex:1"></span>
+        <span class="tbl-hint">Columns are yours to choose — these five are the default</span>
+      </div>
+      <div class="empty-board">
+        <div class="eb-head">${cols.map(c => `<span>${esc(c)}</span>`).join("")}</div>
+        <div class="eb-empty">
+          <h3>Nothing in here yet</h3>
+          <p>A table starts empty on purpose. Add the first row, or let it fill itself from an email, a form or another system.</p>
+        </div>
+        <div class="eb-add">
+          <button class="tbl-addbtn"><svg class="i"><use href="#i-plus"/></svg> Add the first item</button>
+          <span class="sp" style="flex:1"></span>
+          <span class="tbl-hint">or paste a spreadsheet straight in</span>
+        </div>
+      </div>
+    </section>`;
+}
+
+/* ── Interaction for the Tables page ─────────────────────── */
+document.addEventListener("click", e => {
+  const open = e.target.closest("[data-open]");
+  if (open){
+    const t = tableById(open.dataset.open);
+    tblMenu = null;
+    if (t) go(t.view ? t.view : "table:" + t.id);
+    return;
+  }
+  const star = e.target.closest("[data-star]");
+  if (star){ const t = tableById(star.dataset.star); if (t) t.fav = !t.fav; viewTables(); return; }
+
+  const dots = e.target.closest("[data-dots]");
+  if (dots){ tblMenu = tblMenu === dots.dataset.dots ? null : dots.dataset.dots; viewTables(); return; }
+
+  const ren = e.target.closest("[data-rename]");
+  if (ren){ tblRename = ren.dataset.rename; tblMenu = null; viewTables(); return; }
+
+  const dup = e.target.closest("[data-dup]");
+  if (dup){
+    const t = tableById(dup.dataset.dup), i = TABLES.indexOf(t);
+    if (t) TABLES.splice(i + 1, 0, {...t, id:"t" + Date.now(), name:t.name + " (copy)", view:null, fav:false, last:"just created"});
+    tblMenu = null; viewTables(); renderNav(); return;
+  }
+  const mv = e.target.closest("[data-move]");
+  if (mv){
+    const [id, dept] = mv.dataset.move.split(":");
+    const t = tableById(id);
+    if (t) t.dept = dept;
+    tblMenu = null; viewTables(); return;
+  }
+  const del = e.target.closest("[data-del]");
+  if (del){ tblConfirm = del.dataset.del; tblMenu = null; viewTables(); return; }
+
+  if (e.target.closest("[data-delcancel]")){ tblConfirm = null; viewTables(); return; }
+
+  const dy = e.target.closest("[data-delyes]");
+  if (dy){
+    const i = TABLES.findIndex(t => t.id === dy.dataset.delyes);
+    if (i > -1) TABLES.splice(i, 1);
+    tblConfirm = null; viewTables(); renderNav(); return;
+  }
+  const addopen = e.target.closest("[data-addopen]");
+  if (addopen){
+    tblAdd = addopen.dataset.addopen;
+    if (current !== "tables") go("tables"); else viewTables();
+    return;
+  }
+  if (e.target.closest("[data-addcancel]")){ tblAdd = null; viewTables(); return; }
+
+  /* a click anywhere else closes an open row menu */
+  if (tblMenu && !e.target.closest(".tbl-menu")){ tblMenu = null; if (current === "tables") viewTables(); }
+});
+
+document.addEventListener("submit", e => {
+  const addf = e.target.closest("[data-addform]");
+  if (addf){
+    e.preventDefault();
+    const name = (new FormData(addf).get("tname") || "").toString().trim();
+    if (name){
+      TABLES.push({id:"t" + Date.now(), name, dept:addf.dataset.addform, icon:"i-board",
+        color:DEPT_COLOR[addf.dataset.addform], view:null, members:["DB"], last:"just created",
+        fav:false, note:"New table"});
+    }
+    tblAdd = null; viewTables(); renderNav();
+    return;
+  }
+  const renf = e.target.closest("[data-renameform]");
+  if (renf){
+    e.preventDefault();
+    const t = tableById(renf.dataset.renameform);
+    const name = (new FormData(renf).get("tname") || "").toString().trim();
+    if (t && name){ t.name = name; t.last = "just now"; }
+    tblRename = null; viewTables();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.id === "tbl-q"){ tblQuery = e.target.value; viewTables(); }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && current === "tables" && (tblMenu || tblRename || tblConfirm || tblAdd)){
+    tblMenu = tblRename = tblConfirm = tblAdd = null; viewTables();
+  }
+});
+
+/* Drag a table to reorder it, or onto another department to move it. */
+let tblDrag = null;
+document.addEventListener("dragstart", e => {
+  const row = e.target.closest(".tbl-row");
+  if (!row) return;
+  tblDrag = row.dataset.tid;
+  row.classList.add("dragging");
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text/plain", tblDrag);
+});
+document.addEventListener("dragend", () => {
+  tblDrag = null;
+  document.querySelectorAll(".dragging,.drop-here,.drag-over")
+    .forEach(el => el.classList.remove("dragging","drop-here","drag-over"));
+});
+document.addEventListener("dragover", e => {
+  if (!tblDrag) return;
+  const row = e.target.closest(".tbl-row"), sec = e.target.closest(".tbl-section");
+  if (!row && !sec) return;
+  e.preventDefault();
+  document.querySelectorAll(".drop-here").forEach(el => el.classList.remove("drop-here"));
+  document.querySelectorAll(".drag-over").forEach(el => el.classList.remove("drag-over"));
+  if (row && row.dataset.tid !== tblDrag) row.classList.add("drop-here");
+  else if (sec) sec.classList.add("drag-over");
+});
+document.addEventListener("drop", e => {
+  if (!tblDrag) return;
+  const row = e.target.closest(".tbl-row"), sec = e.target.closest(".tbl-section");
+  if (!row && !sec) return;
+  e.preventDefault();
+  const from = TABLES.findIndex(t => t.id === tblDrag);
+  if (from < 0) return;
+  const moved = TABLES[from];
+  TABLES.splice(from, 1);
+  if (row && row.dataset.tid !== tblDrag){
+    const target = TABLES.findIndex(t => t.id === row.dataset.tid);
+    moved.dept = tableById(row.dataset.tid).dept;
+    TABLES.splice(target < 0 ? TABLES.length : target, 0, moved);
+  } else {
+    moved.dept = sec.dataset.dept;
+    TABLES.push(moved);
+  }
+  tblDrag = null;
+  viewTables();
+});
+
 function showDetail(html){
   const d = $("#detail");
   d.innerHTML = html;
@@ -1269,7 +1663,7 @@ function openMeeting(id){
           <div style="flex:1"><span class="xt">${esc(t.t)}</span>
             <div style="font-size:11.5px;color:var(--muted);margin-top:3px">${esc(P[t.own].n)} · ${esc(t.board)}</div></div>
         </div>`).join("")}
-       <p style="font-size:12px;color:var(--muted);margin:14px 0 0">All three are on the boards already. Untick one to take it back off.</p>`
+       <p style="font-size:12px;color:var(--muted);margin:14px 0 0">All three are on the tables already. Untick one to take it back off.</p>`
     : `<h3 class="sec">Brief</h3>
        <ul class="bullets">${m.brief.map(b => `<li>${esc(b)}</li>`).join("")}</ul>
        ${m.cust ? `<h3 class="sec">Account</h3>${custChip(m.cust)}` : ""}
@@ -1342,7 +1736,7 @@ function openItem(id){
   } else {
     where = r.board;
     meta = `
-      <div><div class="lab">Board</div><span class="boardchip"><span class="dot" style="background:${r.bc}"></span>${esc(r.board)}</span></div>
+      <div><div class="lab">Table</div><span class="boardchip"><span class="dot" style="background:${r.bc}"></span>${esc(r.board)}</span></div>
       <div><div class="lab">Due</div>${dateCell(r.due)}</div>`;
   }
 
