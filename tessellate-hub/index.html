@@ -369,7 +369,7 @@ table.data td.r,table.data th.r{text-align:right}
 .tbl-star{border:none;background:none;cursor:pointer;color:var(--border-strong);padding:3px;border-radius:5px;flex:0 0 auto;display:flex}
 .tbl-star:hover{background:var(--card2);color:var(--warn)}
 .tbl-star.on{color:var(--warn)}
-.tbl-dots{border:none;background:none;cursor:pointer;color:var(--muted);padding:3px 7px;border-radius:5px;font-size:16px;line-height:1;flex:0 0 auto}
+.tbl-dots{border:none;background:none;cursor:pointer;color:var(--muted);padding:4px;border-radius:5px;flex:0 0 auto;display:flex;align-items:center}
 .tbl-dots:hover{background:var(--card2);color:var(--text)}
 
 .tbl-menu{
@@ -434,7 +434,7 @@ table.data td.r,table.data th.r{text-align:right}
   padding:3px 10px;font-size:11.5px;font-family:inherit;cursor:pointer;white-space:nowrap;
 }
 .widget > header .wsrc:hover{border-color:var(--border-strong);color:var(--text)}
-.widget > header .wdots{border:none;background:none;cursor:pointer;color:var(--muted);padding:2px 6px;border-radius:5px;font-size:16px;line-height:1}
+.widget > header .wdots{border:none;background:none;cursor:pointer;color:var(--muted);padding:4px;border-radius:5px;display:flex;align-items:center}
 .widget > header .wdots:hover{background:var(--card2);color:var(--text)}
 .wbody{padding:14px}
 .wempty{padding:26px 14px;text-align:center;font-size:12.5px;color:var(--muted)}
@@ -541,6 +541,13 @@ table.data td.r,table.data th.r{text-align:right}
   .brand .bname{display:none}
   .brandmark{height:24px}
 }
+@media (max-width:640px){
+  .tbl-count,.tbl-row .people{display:none}
+  .tbl-sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tbl-row{gap:9px;padding:10px 12px}
+  .wnums{grid-template-columns:1fr 1fr}
+  .wmenu,.wsel,.tbl-menu{right:8px;min-width:0;width:min(260px,calc(100vw - 40px))}
+}
 @media (min-width:821px){ .navtoggle{display:none} }
 </style>
 </head>
@@ -567,6 +574,7 @@ table.data td.r,table.data th.r{text-align:right}
 <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h10v9H3z"/><path d="M13 10.5h4l3 3v2.5h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
 <symbol id="i-grip" viewBox="0 0 24 24"><circle cx="9" cy="5.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="9" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="9" cy="18.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="5.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="18.5" r="1.5" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4.2l2.45 5.1 5.55.75-4.05 3.9.98 5.45L12 16.75 7.07 19.4l.98-5.45L4 10.05l5.55-.75z"/></symbol>
+<symbol id="i-dots" viewBox="0 0 24 24"><circle cx="12" cy="5.6" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.6" fill="currentColor" stroke="none"/></symbol>
 </defs></svg>
 
 <div class="ribbon">
@@ -1522,7 +1530,7 @@ function viewTables(){
         <svg class="i"><use href="#i-search"/></svg>
         <input type="search" id="tbl-q" placeholder="Search tables…" value="${esc(tblQuery)}" autocomplete="off">
       </div>
-      <span class="tbl-hint">${TABLES.length} tables · ${TABLES.filter(t => t.fav).length} starred · drag the handle to reorder or to move a table between departments</span>
+      <span class="tbl-hint">${TABLES.length} tables · ${TABLES.filter(t => t.fav).length} starred · move a table with its menu, or drag the handle on a computer</span>
     </div>
     ${sections}`;
 
@@ -1555,7 +1563,7 @@ function tableRow(t){
     <span class="people">${t.members.map(k => av(k,"sm")).join("")}</span>
     <button class="tbl-star ${t.fav?"on":""}" data-star="${t.id}" aria-label="Star this table" title="${t.fav?"Starred":"Star this table"}">
       <svg class="i" style="fill:${t.fav?"currentColor":"none"}"><use href="#i-star"/></svg></button>
-    <button class="tbl-dots" data-dots="${t.id}" aria-label="More">⋮</button>
+    <button class="tbl-dots" data-dots="${t.id}" aria-label="More"><svg class="i"><use href="#i-dots"/></svg></button>
     ${tblMenu === t.id ? tableMenu(t) : ""}
   </div>`;
 }
@@ -1565,6 +1573,8 @@ function tableMenu(t){
     <button data-open="${t.id}"><svg class="i"><use href="#i-board"/></svg> Open</button>
     <button data-rename="${t.id}"><svg class="i"><use href="#i-file"/></svg> Rename</button>
     <button data-dup="${t.id}"><svg class="i"><use href="#i-plus"/></svg> Duplicate</button>
+    <button data-tmove="${t.id}:up"><svg class="i" style="transform:rotate(-90deg)"><use href="#i-caret"/></svg> Move up</button>
+    <button data-tmove="${t.id}:down"><svg class="i" style="transform:rotate(90deg)"><use href="#i-caret"/></svg> Move down</button>
     <div class="sep"></div>
     <div class="lab">Move to</div>
     ${DEPTS.filter(d => d !== t.dept).map(d =>
@@ -1638,6 +1648,17 @@ document.addEventListener("click", e => {
     const [id, dept] = mv.dataset.move.split(":");
     const t = tableById(id);
     if (t) t.dept = dept;
+    tblMenu = null; viewTables(); return;
+  }
+  const tm = e.target.closest("[data-tmove]");
+  if (tm){
+    const [id, dir] = tm.dataset.tmove.split(":");
+    const t = tableById(id), sib = TABLES.filter(x => x.dept === t.dept);
+    const swapWith = sib[sib.indexOf(t) + (dir === "up" ? -1 : 1)];
+    if (swapWith){
+      const a = TABLES.indexOf(t), b = TABLES.indexOf(swapWith);
+      TABLES[a] = swapWith; TABLES[b] = t;
+    }
     tblMenu = null; viewTables(); return;
   }
   const del = e.target.closest("[data-del]");
@@ -1756,12 +1777,12 @@ PROJ.forEach(p => { if (!p.due) p.due = PROJ_DUE[p.id] || null; });
 const DONE_STATES = ["Delivered","Approved","Paid","Won","Rejected","Lost"];
 
 const WIDGET_KINDS = {
-  numbers:  {t:"Numbers",             d:"Open items, what is late, and the value behind them"},
-  battery:  {t:"Battery",             d:"How the work sits across statuses, in one bar"},
-  workload: {t:"Workload",            d:"Open items per person, so nobody is quietly buried"},
-  deadlines:{t:"Deadlines",           d:"Late, today, this week, later"},
-  bydept:   {t:"Items by department", d:"Where the open work actually sits"},
-  week:     {t:"Due this week",       d:"One list across every table you point it at"}
+  numbers:  {t:"Numbers",                  s:"open rows", d:"Open items, what is late, and the value behind them"},
+  battery:  {t:"Battery",                  s:"all rows",  d:"How the work sits across statuses, in one bar"},
+  workload: {t:"Workload",                 s:"open rows", d:"Open items per person, so nobody is quietly buried"},
+  deadlines:{t:"Deadlines",                s:"open rows", d:"Late, today, this week, later"},
+  bydept:   {t:"Items by department",      s:"open rows", d:"Where the open work actually sits"},
+  week:     {t:"Due this week",            s:"open rows", d:"One list across every table you point it at"}
 };
 
 let DASH = [
@@ -1799,13 +1820,15 @@ const dueLabel = iso => iso ? new Date(iso).toLocaleDateString("en-CA",{month:"s
 /* ── The widgets ──────────────────────────────────────────── */
 function wNumbers(w){
   const items = widgetItems(w), open = items.filter(i => i.open);
+  if (!items.length) return `<div class="wempty">No tables selected. Pick at least one in the header.</div>`;
+  const hasPipeline = w.tables === "all" || w.tables.some(id => (tableById(id)||{}).view === "pipeline");
   const late = open.filter(i => dayDiff(i.due) !== null && dayDiff(i.due) < 0);
   const value = open.filter(i => i.tbl.view === "pipeline").reduce((s,i) => s + (i.val||0), 0);
   const tables = w.tables === "all" ? feedTables().length : w.tables.filter(id => (tableById(id)||{}).view).length;
   return `<div class="wnums">
     <div class="wnum"><div class="l">Open items</div><div class="v">${open.length}</div></div>
     <div class="wnum"><div class="l">Late</div><div class="v ${late.length?"neg":""}">${late.length}</div></div>
-    <div class="wnum"><div class="l">Pipeline value</div><div class="v">${k$(value)}</div></div>
+    <div class="wnum"><div class="l">Pipeline value</div><div class="v">${hasPipeline ? k$(value) : "&mdash;"}</div>${hasPipeline ? "" : `<div class="l" style="margin-top:2px">no pipeline table selected</div>`}</div>
     <div class="wnum"><div class="l">Tables feeding this</div><div class="v">${tables}</div></div>
   </div>`;
 }
@@ -1849,7 +1872,8 @@ function wWorkload(w){
       <span class="k">${av(k,"sm")}${esc(P[k].n.split(" ")[0])}</span>
       <span class="track"><i style="width:${(n/max*100).toFixed(1)}%"></i></span>
       <span class="v">${n}</span>
-    </div>`).join("")}</div>`;
+    </div>`).join("")}</div>
+    <p style="margin:11px 0 0;font-size:11.5px;color:var(--muted)">A row with two owners counts for both, so this adds up to more than the open total.</p>`;
 }
 
 function wByDept(w){
@@ -1886,7 +1910,7 @@ function wWeek(w){
   const open = widgetItems(w).filter(i => i.open && i.due && dayDiff(i.due) <= 7)
     .sort((a,b) => a.due.localeCompare(b.due));
   if (!open.length) return `<div class="wempty">Nothing due in the next seven days.</div>`;
-  return `<table class="wlist">
+  return `<div class="tblwrap"><table class="wlist">
     <thead><tr><th>Item</th><th>Table</th><th>Owner</th><th>Status</th><th>Due</th></tr></thead>
     <tbody>${open.map(i => {
       const d = dayDiff(i.due);
@@ -1897,7 +1921,7 @@ function wWeek(w){
         <td><span class="tag" style="background:${i.st.c};color:#fff;font-weight:600">${esc(i.st.t)}</span></td>
         <td><span class="datefill ${d<0?"over":d<=3?"soon":""}">${dueLabel(i.due)}${d<0?" · late":""}</span></td>
       </tr>`;
-    }).join("")}</tbody></table>`;
+    }).join("")}</tbody></table></div>`;
 }
 
 const WIDGET_BODY = {numbers:wNumbers, battery:wBattery, workload:wWorkload,
@@ -1913,9 +1937,9 @@ function viewDashboard(){
     return `<section class="widget ${w.span===2?"span2":""}" data-wid="${w.id}">
       <header draggable="true">
         <span class="wgrip" title="Drag to reorder" aria-hidden="true"><svg class="i" style="width:13px;height:13px"><use href="#i-grip"/></svg></span>
-        <h3>${esc(kind.t)}</h3>
+        <h3>${esc(kind.t)} <span style="font-weight:400;color:var(--muted);font-size:11.5px">(${esc(kind.s)})</span></h3>
         <button class="wsrc" data-wsel="${w.id}" title="Choose which tables feed this widget">${esc(src)} ▾</button>
-        <button class="wdots" data-wmenu="${w.id}" aria-label="Widget options">⋮</button>
+        <button class="wdots" data-wmenu="${w.id}" aria-label="Widget options"><svg class="i"><use href="#i-dots"/></svg></button>
       </header>
       <div class="wbody">${WIDGET_BODY[w.kind](w)}</div>
       ${dashMenu === w.id ? widgetMenu(w) : ""}
@@ -1925,7 +1949,7 @@ function viewDashboard(){
 
   $("#view").innerHTML = `
     <div class="phead">
-      <div><h1>Dashboard</h1><p>One screen over every table. Each widget reads the same rows the tables hold, so a number here can never disagree with the table it came from.</p></div>
+      <div><h1>Dashboard</h1><p>One screen over every table. Every widget reads the same rows the tables hold, never a second dataset. Each one says underneath its title whether it counts open rows or all of them.</p></div>
       <span class="sp"></span>
       <button class="btn" data-view="tables"><svg class="i"><use href="#i-board"/></svg> Tables</button>
       <button class="btn primary" data-wadd="1"><svg class="i"><use href="#i-plus"/></svg> Add widget</button>
@@ -1952,6 +1976,8 @@ function widgetMenu(w){
   return `<div class="wmenu">
     <button data-wspan="${w.id}"><svg class="i"><use href="#i-board"/></svg> ${w.span === 2 ? "Make it narrow" : "Make it full width"}</button>
     <button data-wdup="${w.id}"><svg class="i"><use href="#i-plus"/></svg> Duplicate</button>
+    <button data-wmove="${w.id}:up"><svg class="i" style="transform:rotate(-90deg)"><use href="#i-caret"/></svg> Move up</button>
+    <button data-wmove="${w.id}:down"><svg class="i" style="transform:rotate(90deg)"><use href="#i-caret"/></svg> Move down</button>
     <button data-wsel="${w.id}"><svg class="i"><use href="#i-board"/></svg> Choose tables</button>
     <div class="sep"></div>
     <button class="danger" data-wdel="${w.id}"><svg class="i"><use href="#i-x"/></svg> Remove widget</button>
@@ -2002,6 +2028,13 @@ document.addEventListener("click", e => {
     const w = widgetById(dup.dataset.wdup), i = DASH.indexOf(w);
     if (w) DASH.splice(i + 1, 0, {...w, id:"w" + Date.now()});
     dashMenu = null; viewDashboard(); renderNav(); return;
+  }
+  const wmv = e.target.closest("[data-wmove]");
+  if (wmv){
+    const [id, dir] = wmv.dataset.wmove.split(":");
+    const i = DASH.findIndex(w => w.id === id), j = i + (dir === "up" ? -1 : 1);
+    if (i > -1 && j >= 0 && j < DASH.length){ const t = DASH[i]; DASH[i] = DASH[j]; DASH[j] = t; }
+    dashMenu = null; viewDashboard(); return;
   }
   const wd = e.target.closest("[data-wdel]");
   if (wd){
