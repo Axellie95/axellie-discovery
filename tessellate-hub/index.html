@@ -330,6 +330,20 @@ table.data td.r,table.data th.r{text-align:right}
 .note b{font-weight:600}
 
 /* ── Tables: every table in the workspace, in one place ───── */
+.nav-add{
+  display:flex;align-items:center;gap:9px;margin:4px 12px 2px;padding:7px 10px;width:calc(100% - 24px);
+  border:1px dashed var(--border-strong);background:transparent;border-radius:var(--r);
+  color:var(--text2);font-family:inherit;font-size:13px;cursor:pointer;
+}
+.nav-add:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--accent-bg)}
+.tbl-lock{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--muted);white-space:nowrap}
+.tbl-lock svg{width:13px;height:13px}
+.tbl-choose{background:var(--card);border:1px solid var(--accent-border);border-radius:var(--r-lg);box-shadow:var(--shadow-md);padding:13px 15px;margin-bottom:16px}
+.tbl-choose h3{margin:0 0 3px;font-size:14px;font-weight:600}
+.tbl-choose p{margin:0 0 11px;font-size:12.5px;color:var(--muted)}
+.tbl-choose .row{display:flex;gap:8px;flex-wrap:wrap}
+.tbl-choose .row button{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);background:var(--card);border-radius:999px;padding:6px 13px;font-family:inherit;font-size:13px;color:var(--text);cursor:pointer}
+.tbl-choose .row button:hover{border-color:var(--accent);background:var(--accent-bg);color:var(--accent-dark)}
 .tbl-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 .tbl-search{position:relative;flex:1;min-width:180px;max-width:340px}
 .tbl-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
@@ -581,6 +595,7 @@ table.data td.r,table.data th.r{text-align:right}
 <symbol id="i-grip" viewBox="0 0 24 24"><circle cx="9" cy="5.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="9" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="9" cy="18.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="5.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="18.5" r="1.5" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4.2l2.45 5.1 5.55.75-4.05 3.9.98 5.45L12 16.75 7.07 19.4l.98-5.45L4 10.05l5.55-.75z"/></symbol>
 <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="12" cy="5.6" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8.2 10.5V8a3.8 3.8 0 0 1 7.6 0v2.5"/></symbol>
 </defs></svg>
 
 <div class="ribbon">
@@ -936,6 +951,8 @@ function renderNav(){
          +  `<span>${esc(v.label)}</span>`
          +  (tail !== undefined ? `<span class="tail">${tail}</span>` : "")
          +  `</a>`;
+    if (v.id === "tables")
+      html += `<button class="nav-add" data-addopen="__choose"><svg class="i"><use href="#i-plus"/></svg> New table</button>`;
   }
   $("#nav").innerHTML = html;
 }
@@ -1049,7 +1066,7 @@ function viewHome(){
         <div class="rows">${items}</div>
       </section>
       <section class="panel">
-        <header><h2>Tables</h2><span class="sp"></span><button class="btn sm" data-addopen="Sales"><svg class="i"><use href="#i-plus"/></svg> New table</button></header>
+        <header><h2>Tables</h2><span class="sp"></span><button class="btn sm" data-addopen="__choose"><svg class="i"><use href="#i-plus"/></svg> New table</button></header>
         <div class="rows">${boards}</div>
       </section>
     </div>
@@ -1462,6 +1479,10 @@ function drawProducts(mode){
    ═══════════════════════════════════════════════════════════ */
 const DEPTS = ["Sales","Operations","Engineering","Finance"];
 const DEPT_COLOR = {Sales:"#2a78d6", Operations:"#eb6834", Engineering:"#4a3aa7", Finance:"#eda100"};
+/* Private sits beside the departments: same machinery, only the owner sees it. */
+const SECTIONS = [...DEPTS, "Private"];
+const SECTION_COLOR = {...DEPT_COLOR, Private:"#6E6A63"};
+const isPrivate = t => t.dept === "Private";
 
 const TABLES = [
   {id:"t1",name:"Pipeline",dept:"Sales",icon:"i-board",color:"#2a78d6",view:"pipeline",
@@ -1479,7 +1500,11 @@ const TABLES = [
   {id:"t7",name:"Grant programs",dept:"Finance",icon:"i-board",color:"#1baf7a",view:"grants",
    members:["VB","DB"],last:"5 days ago",fav:false,note:"Applications and reporting"},
   {id:"t8",name:"Board meetings",dept:"Finance",icon:"i-board",color:"#6B6660",view:null,
-   members:["DB","VB"],last:"just created",fav:false,note:"Agendas, decisions, follow-ups"}
+   members:["DB","VB"],last:"just created",fav:false,note:"Agendas, decisions, follow-ups"},
+  {id:"t9",name:"My week",dept:"Private",icon:"i-board",color:"#6E6A63",view:null,
+   members:["DB"],last:"this morning",fav:true,note:"What I am actually doing, before anyone else sees it"},
+  {id:"t10",name:"People and pay",dept:"Private",icon:"i-lock",color:"#4a3aa7",view:null,
+   members:["DB"],last:"2 weeks ago",fav:false,note:"Kept out of every shared table on purpose"}
 ];
 const tableById = id => TABLES.find(t => t.id === id);
 const tableRows = t => {
@@ -1499,16 +1524,16 @@ function viewTables(){
   const match = t => !q || t.name.toLowerCase().includes(q) || t.note.toLowerCase().includes(q);
   const shown = TABLES.filter(match);
 
-  const sections = DEPTS.map(dept => {
+  const sections = SECTIONS.map(dept => {
     const rows = shown.filter(t => t.dept === dept);
     return `
       <section class="tbl-section" data-dept="${dept}">
         <header>
-          <span class="bar" style="background:${DEPT_COLOR[dept]}"></span>
-          <h2>${esc(dept)}</h2>
+          <span class="bar" style="background:${SECTION_COLOR[dept]}"></span>
+          <h2>${esc(dept)}</h2>${dept === "Private" ? `<svg class="i" style="width:14px;height:14px;color:var(--muted)"><use href="#i-lock"/></svg>` : ""}
           <span class="pill">${rows.length}</span>
           <span class="sp"></span>
-          <span class="tbl-hint">${rows.reduce((s,t) => s + tableRows(t), 0)} rows in total</span>
+          <span class="tbl-hint">${dept === "Private" ? "only you can see these" : rows.reduce((s,t) => s + tableRows(t), 0) + " rows in total"}</span>
         </header>
         ${rows.map(t => tableRow(t)).join("")
           || `<div style="padding:14px 15px;font-size:12.5px;color:var(--muted2)">No tables here. Drag one in, or add one below.</div>`}
@@ -1529,7 +1554,7 @@ function viewTables(){
       <div><h1>Tables</h1><p>Every table in the workspace, grouped by the department that owns it. Add one, rename it, move it somewhere else, or delete it — this page is the workspace, not a picture of it.</p></div>
       <span class="sp"></span>
       <button class="btn" data-view="dash"><svg class="i"><use href="#i-chart"/></svg> Dashboard</button>
-      <button class="btn primary" data-addopen="Sales"><svg class="i"><use href="#i-plus"/></svg> New table</button>
+      <button class="btn primary" data-addopen="__choose"><svg class="i"><use href="#i-plus"/></svg> New table</button>
     </div>
     <div class="tbl-toolbar">
       <div class="tbl-search">
@@ -1538,10 +1563,25 @@ function viewTables(){
       </div>
       <span class="tbl-hint">${TABLES.length} tables · ${TABLES.filter(t => t.fav).length} starred · move a table with its menu, or drag the handle on a computer</span>
     </div>
+${tblAdd === "__choose" ? sectionChooser() : ""}
     ${sections}`;
 
   const qi = document.getElementById("tbl-q");
   if (qi && q){ qi.focus(); qi.setSelectionRange(qi.value.length, qi.value.length); }
+}
+
+function sectionChooser(){
+  return `<div class="tbl-choose">
+    <h3>Where does the new table belong?</h3>
+    <p>A department table is shared with everyone. A private one is yours alone until you move it.</p>
+    <div class="row">
+      ${SECTIONS.map(s => `<button data-addopen="${s}">
+        <span class="dot" style="width:9px;height:9px;border-radius:2px;background:${SECTION_COLOR[s]}"></span>
+        ${esc(s)}${s === "Private" ? ` <svg class="i" style="width:12px;height:12px"><use href="#i-lock"/></svg>` : ""}
+      </button>`).join("")}
+      <button data-addcancel="1" style="border-style:dashed">Cancel</button>
+    </div>
+  </div>`;
 }
 
 function tableRow(t){
@@ -1566,7 +1606,7 @@ function tableRow(t){
       <div class="tbl-sub">${esc(t.note)} · last change ${esc(t.last)}</div>
     </div>
     <span class="tbl-count">${rows ? rows + " rows" : "empty"}</span>
-    <span class="people">${t.members.map(k => av(k,"sm")).join("")}</span>
+    ${isPrivate(t) ? `<span class="tbl-lock"><svg class="i"><use href="#i-lock"/></svg> Only you</span>` : `<span class="people">${t.members.map(k => av(k,"sm")).join("")}</span>`}
     <button class="tbl-star ${t.fav?"on":""}" data-star="${t.id}" aria-label="Star this table" title="${t.fav?"Starred":"Star this table"}">
       <svg class="i" style="fill:${t.fav?"currentColor":"none"}"><use href="#i-star"/></svg></button>
     <button class="tbl-dots" data-dots="${t.id}" aria-label="More"><svg class="i"><use href="#i-dots"/></svg></button>
@@ -1583,8 +1623,8 @@ function tableMenu(t){
     <button data-tmove="${t.id}:down"><svg class="i" style="transform:rotate(90deg)"><use href="#i-caret"/></svg> Move down</button>
     <div class="sep"></div>
     <div class="lab">Move to</div>
-    ${DEPTS.filter(d => d !== t.dept).map(d =>
-      `<button data-move="${t.id}:${d}"><span class="dot" style="width:8px;height:8px;border-radius:2px;background:${DEPT_COLOR[d]}"></span> ${esc(d)}</button>`).join("")}
+    ${SECTIONS.filter(d => d !== t.dept).map(d =>
+      `<button data-move="${t.id}:${d}"><span class="dot" style="width:8px;height:8px;border-radius:2px;background:${SECTION_COLOR[d]}"></span> ${esc(d)}</button>`).join("")}
     <div class="sep"></div>
     <button class="danger" data-del="${t.id}"><svg class="i"><use href="#i-x"/></svg> Delete table</button>
   </div>`;
@@ -1696,9 +1736,10 @@ document.addEventListener("submit", e => {
     e.preventDefault();
     const name = (new FormData(addf).get("tname") || "").toString().trim();
     if (name){
-      TABLES.push({id:"t" + Date.now(), name, dept:addf.dataset.addform, icon:"i-board",
-        color:DEPT_COLOR[addf.dataset.addform], view:null, members:["DB"], last:"just created",
-        fav:false, note:"New table"});
+      const where = addf.dataset.addform;
+      TABLES.push({id:"t" + Date.now(), name, dept:where, icon:where === "Private" ? "i-lock" : "i-board",
+        color:SECTION_COLOR[where], view:null, members:["DB"], last:"just created",
+        fav:false, note:where === "Private" ? "Private to you" : "New table"});
     }
     tblAdd = null; viewTables(); renderNav();
     return;
