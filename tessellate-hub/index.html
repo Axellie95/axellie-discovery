@@ -6,18 +6,15 @@
 <meta name="robots" content="noindex, nofollow">
 <title>My Tessellate — work hub walkthrough</title>
 <style>
-/* ─────────────────────────────────────────────────────────────
-   Tokens — inherited from the running work hub (white theme),
-   Light product surface, steel-teal accent.
-   ───────────────────────────────────────────────────────────── */
+/* Design tokens — light product surface, steel-teal accent. */
 :root{
   --bg:#F5F5F5; --card:#FFFFFF; --card2:#F0F0F0; --card3:#FAFAF9;
   --border:#E5E5E5; --border2:#DEDEDE; --border-strong:#CCCCCC;
   --text:#1A1A1A; --text2:#444444; --muted:#6B6B6B; --muted2:#6E6A63;
   --accent:#14657C; --accent-dark:#0E4C5E; --accent-bg:#E8F1F4; --accent-border:#A9CBD5;
   --pos:#0A7A2E; --pos-bg:#EDF7F2; --neg:#B32B2B; --neg-bg:#FDF0F0;
-  --warn:#9A6B00; --warn-bg:#FBF3E2; --blue:#2a78d6; --blue-bg:#EEF3FB;
-  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --warn:#8A5E00; --warn-bg:#FBF3E2;
+  --s1:#2a78d6; --s2:#eb6834;
   --grid:#E1E0D9; --axis:#C3C2B7; --ink-muted:#77756F;
   --shadow:0 1px 3px rgba(0,0,0,.05), 0 1px 2px rgba(0,0,0,.03);
   --shadow-md:0 6px 18px rgba(0,0,0,.09), 0 2px 5px rgba(0,0,0,.04);
@@ -29,15 +26,13 @@
 html,body{height:100%}
 body{
   margin:0; font-family:var(--sans); font-size:14px; line-height:1.45;
-  color:var(--text); background:var(--bg);
-  -webkit-font-smoothing:antialiased;
+  color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased;
   display:flex; flex-direction:column; height:100vh; overflow:hidden;
 }
 svg.i{width:16px;height:16px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
 svg.i.lg{width:19px;height:19px}
 button{font-family:inherit}
 
-/* ── Sample-data ribbon ───────────────────────────────────── */
 .ribbon{
   background:var(--text); color:#fff; font-size:11.5px; letter-spacing:.02em;
   padding:6px 18px; display:flex; flex-wrap:wrap; align-items:center; gap:3px 10px; flex:0 0 auto; min-width:0;
@@ -45,18 +40,17 @@ button{font-family:inherit}
 .ribbon strong{font-weight:600}
 .ribbon .sp{flex:1;min-width:0}
 .ribbon strong,.ribbon span{min-width:0;overflow-wrap:anywhere}
-.topbar,.brand{min-width:0}
 .ribbon span.dim{color:rgba(255,255,255,.62)}
+.topbar,.brand{min-width:0}
 
-/* ── Topbar ───────────────────────────────────────────────── */
 .topbar{
   flex:0 0 auto; background:var(--card); border-bottom:1px solid var(--border);
   min-height:52px; display:flex; align-items:center; gap:14px; padding:0 16px;
 }
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.brand{display:flex;align-items:center;gap:11px;font-size:15px;letter-spacing:-.01em}
 .brandmark{height:29px;width:auto;display:block;color:var(--text);flex:0 0 auto}
 .brand .bname{font-weight:600;border-left:1px solid var(--border2);padding-left:11px}
-.brand .sub{color:var(--muted);font-weight:400;font-size:12.5px;border-left:1px solid var(--border2);padding-left:10px;margin-left:2px}
+.brand .sub{color:var(--muted);font-weight:400;font-size:12.5px;border-left:1px solid var(--border2);padding-left:10px}
 .topbar .sp{flex:1}
 .searchbox{position:relative;width:min(280px,32vw)}
 .searchbox svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--muted)}
@@ -82,17 +76,15 @@ button{font-family:inherit}
   display:flex;align-items:center;justify-content:center;flex:0 0 auto;letter-spacing:.02em;
 }
 .av.sm{width:22px;height:22px;font-size:9.5px}
-.av.lg{width:40px;height:40px;font-size:14px}
 
-/* ── Shell ────────────────────────────────────────────────── */
 .shell{display:flex;flex:1;min-height:0}
 .nav{
-  width:232px;flex:0 0 auto;background:var(--card);border-right:1px solid var(--border);
+  width:236px;flex:0 0 auto;background:var(--card);border-right:1px solid var(--border);
   display:flex;flex-direction:column;overflow-y:auto;padding:10px 0 18px;
 }
 .nav .group-label{
   font-size:10.5px;font-weight:600;color:var(--muted);text-transform:uppercase;
-  letter-spacing:.07em;padding:14px 16px 6px;
+  letter-spacing:.07em;padding:15px 16px 6px;
 }
 .nav a{
   display:flex;align-items:center;gap:10px;padding:8px 16px;color:var(--text2);
@@ -107,7 +99,6 @@ button{font-family:inherit}
 .scroll{flex:1;overflow:auto;padding:22px 26px 60px}
 .wrap{max-width:1280px;margin:0 auto}
 
-/* ── Page header ──────────────────────────────────────────── */
 .phead{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:18px}
 .phead h1{margin:0;font-size:24px;font-weight:600;letter-spacing:-.015em}
 .phead p{margin:5px 0 0;color:var(--muted);font-size:13.5px;max-width:66ch}
@@ -121,22 +112,17 @@ button{font-family:inherit}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn.primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
 .btn.sm{padding:5px 10px;font-size:12px}
-.btn:disabled{opacity:.5;cursor:not-allowed}
 
-/* ── Stat tiles ───────────────────────────────────────────── */
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
 .tile{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:15px 17px;box-shadow:var(--shadow)}
 .tile .lab{font-size:11.5px;color:var(--muted);font-weight:500}
 .tile .val{font-size:27px;font-weight:600;letter-spacing:-.02em;margin-top:3px;line-height:1.15}
 .tile .sub{font-size:11.5px;color:var(--muted);margin-top:3px}
 .tile .delta{font-weight:600}
-.tile .delta.up{color:var(--pos)} .tile .delta.dn{color:var(--neg)}
+.tile .delta.up{color:var(--pos)}
 
-/* ── Panels ───────────────────────────────────────────────── */
 .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden}
-.panel > header{
-  display:flex;align-items:center;gap:12px;padding:14px 17px;border-bottom:1px solid var(--border);
-}
+.panel > header{display:flex;align-items:center;gap:12px;padding:14px 17px;border-bottom:1px solid var(--border)}
 .panel > header h2{margin:0;font-size:14.5px;font-weight:600}
 .panel > header .sp{flex:1}
 .panel > header .hint{font-size:12px;color:var(--muted)}
@@ -144,11 +130,7 @@ button{font-family:inherit}
 .cols2{display:grid;grid-template-columns:1.55fr 1fr;gap:22px;align-items:start}
 .cols2 .panel{margin-bottom:0}
 
-/* ── Board table ──────────────────────────────────────────── */
-.toolbar{
-  display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--card);
-  border-bottom:1px solid var(--border);flex-wrap:wrap;
-}
+.toolbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--card);border-bottom:1px solid var(--border);flex-wrap:wrap}
 .tabs{display:flex;gap:2px;background:var(--card2);border-radius:999px;padding:3px}
 .tab{border:none;background:transparent;color:var(--text2);font-size:12.5px;font-weight:500;padding:5px 13px;border-radius:999px;cursor:pointer}
 .tab.on{background:var(--card);color:var(--text);box-shadow:var(--shadow);font-weight:600}
@@ -164,14 +146,9 @@ table.board td:last-child{white-space:nowrap}
 table.board td{padding:0 10px;height:40px;border-bottom:1px solid var(--border);vertical-align:middle}
 table.board tbody tr.row{cursor:pointer}
 table.board tbody tr.row:hover td{background:var(--card3)}
-tr.grouphead td{
-  background:var(--card2);height:34px;font-weight:600;font-size:12.5px;color:var(--text);
-  border-bottom:1px solid var(--border2);
-}
+tr.grouphead td{background:var(--card2);height:34px;font-weight:600;font-size:12.5px;color:var(--text);border-bottom:1px solid var(--border2)}
 tr.grouphead .gh{display:flex;align-items:center;gap:9px}
-tr.grouphead button.caret{
-  border:none;background:transparent;cursor:pointer;color:var(--muted);display:flex;padding:2px;border-radius:4px;
-}
+tr.grouphead button.caret{border:none;background:transparent;cursor:pointer;color:var(--muted);display:flex;padding:2px;border-radius:4px}
 tr.grouphead button.caret:hover{background:var(--border)}
 tr.grouphead .bar{width:4px;height:15px;border-radius:2px;flex:0 0 auto}
 tr.grouphead .sum{margin-left:auto;font-size:11.5px;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
@@ -196,9 +173,11 @@ td.tight{padding:3px 5px}
 }
 .datefill.over{background:var(--neg-bg);color:var(--neg);font-weight:600}
 .datefill.soon{background:var(--warn-bg);color:var(--warn);font-weight:600}
-.people{display:flex;gap:-6px}
+.people{display:flex}
 .people .av{margin-right:-6px;border:2px solid var(--card)}
 .tag{display:inline-block;background:var(--card2);color:var(--text2);border-radius:5px;padding:2px 7px;font-size:11.5px;white-space:nowrap}
+.tag.ok{background:var(--pos-bg);color:var(--pos);font-weight:600}
+.tag.warn{background:var(--warn-bg);color:var(--warn);font-weight:600}
 .ghost{color:var(--muted2);font-size:12px}
 .timeline{position:relative;height:10px;border-radius:5px;background:var(--card2);min-width:90px}
 .timeline i{position:absolute;top:0;bottom:0;border-radius:5px;background:var(--accent);opacity:.85}
@@ -206,7 +185,6 @@ td.tight{padding:3px 5px}
 .risk b{width:7px;height:7px;border-radius:50%;background:var(--border-strong)}
 .risk b.on{background:var(--warn)}
 
-/* ── Kanban ───────────────────────────────────────────────── */
 .kanban{display:flex;gap:14px;padding:16px;overflow-x:auto;align-items:flex-start}
 .kcol{flex:0 0 262px;background:var(--card3);border:1px solid var(--border);border-radius:var(--r-lg);padding:10px}
 .kcol h3{margin:0 0 9px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;color:var(--text)}
@@ -217,7 +195,6 @@ td.tight{padding:3px 5px}
 .kcard .kt{font-size:13px;font-weight:500;margin-bottom:7px}
 .kcard .kmeta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
 
-/* ── Lists ────────────────────────────────────────────────── */
 .rows{display:flex;flex-direction:column}
 .rowitem{display:flex;align-items:center;gap:12px;padding:11px 17px;border-bottom:1px solid var(--border);cursor:pointer}
 .rowitem:last-child{border-bottom:none}
@@ -226,6 +203,8 @@ td.tight{padding:3px 5px}
 .rowitem .body{flex:1;min-width:0}
 .rowitem .t{font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rowitem .m{font-size:11.5px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mtime{font-size:12.5px;font-weight:600;color:var(--text2);font-variant-numeric:tabular-nums;width:42px;flex:0 0 auto}
+.mtime.past{color:var(--muted2);font-weight:500}
 .boardchip{display:inline-flex;align-items:center;gap:5px;background:var(--card2);border-radius:999px;padding:2px 8px;font-size:10.5px;font-weight:500;color:var(--text2)}
 .boardchip .dot{width:7px;height:7px;border-radius:50%}
 .check{
@@ -237,7 +216,6 @@ td.tight{padding:3px 5px}
 .rowitem.done .check{border-color:var(--pos);background:var(--pos);color:#fff}
 .rowitem.done .t{text-decoration:line-through}
 
-/* ── Customers ────────────────────────────────────────────── */
 .custgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px}
 .custcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:15px 16px;box-shadow:var(--shadow);cursor:pointer;text-align:left}
 .custcard:hover{border-color:var(--accent-border);box-shadow:var(--shadow-md)}
@@ -250,7 +228,6 @@ td.tight{padding:3px 5px}
 .kv dt{color:var(--muted);font-size:12px}
 .kv dd{margin:0}
 
-/* ── Charts ───────────────────────────────────────────────── */
 .figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .fig{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:16px 18px 18px}
 .fig h3{margin:0;font-size:14px;font-weight:600}
@@ -284,7 +261,6 @@ table.data td.r,table.data th.r{text-align:right}
 .tip .r i{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
 .tip .r span{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600}
 
-/* ── Detail panel ─────────────────────────────────────────── */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.32);opacity:0;pointer-events:none;transition:opacity .2s;z-index:800}
 .scrim.on{opacity:1;pointer-events:auto}
 .detail{
@@ -303,6 +279,8 @@ table.data td.r,table.data th.r{text-align:right}
 .dtab{border:none;background:transparent;padding:10px 4px;margin-right:14px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;font-weight:500}
 .dtab.on{color:var(--text);border-bottom-color:var(--accent);font-weight:600}
 .dbody{flex:1;overflow-y:auto;padding:16px 18px 28px}
+.dbody h3.sec{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:20px 0 9px}
+.dbody h3.sec:first-child{margin-top:0}
 .composer{border:1px solid var(--border);border-radius:var(--r);padding:10px;margin-bottom:16px;background:var(--card3)}
 .composer textarea{width:100%;border:none;background:transparent;resize:vertical;min-height:54px;font-family:inherit;font-size:13px;color:var(--text)}
 .composer textarea:focus{outline:none}
@@ -324,8 +302,15 @@ table.data td.r,table.data th.r{text-align:right}
 .act:first-child{border-top:none}
 .act time{color:var(--muted);flex:0 0 84px;font-size:11.5px}
 .drop{border:1px dashed var(--border-strong);border-radius:var(--r);padding:20px;text-align:center;color:var(--muted);font-size:12.5px;background:var(--card3);margin-bottom:14px}
+.bullets{margin:0;padding-left:20px;font-size:13px;color:var(--text2)}
+.bullets li{margin-bottom:7px}
+.exline{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--border);font-size:13px}
+.exline:first-of-type{border-top:none}
+.exline .cb{width:19px;height:19px;border-radius:5px;border:2px solid var(--border-strong);flex:0 0 auto;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:transparent;padding:0}
+.exline .cb:hover{border-color:var(--accent);color:var(--accent)}
+.exline.taken .cb{background:var(--accent);border-color:var(--accent);color:#fff}
+.exline.taken .xt{color:var(--text2)}
 
-/* ── Notifications ────────────────────────────────────────── */
 .notifs{
   position:fixed;top:92px;right:18px;width:min(360px,92vw);background:var(--card);
   border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);
@@ -341,24 +326,9 @@ table.data td.r,table.data th.r{text-align:right}
 .notif .nt{color:var(--text2)}
 .notif time{font-size:11px;color:var(--muted)}
 
-/* ── Approval / AI rules ──────────────────────────────────── */
-.gate{display:flex;align-items:flex-start;gap:13px;padding:13px 17px;border-bottom:1px solid var(--border)}
-.gate:last-child{border-bottom:none}
-.gate .g-ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.gate .g-ico.no{background:var(--neg-bg);color:var(--neg)}
-.gate .g-ico.yes{background:var(--pos-bg);color:var(--pos)}
-.gate .g-ico.ask{background:var(--warn-bg);color:var(--warn)}
-.gate .gb{flex:1}
-.gate .gt{font-size:13.5px;font-weight:600}
-.gate .gd{font-size:12.5px;color:var(--muted);margin-top:2px}
-.gate .verdict{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
-.verdict.no{background:var(--neg-bg);color:var(--neg)}
-.verdict.yes{background:var(--pos-bg);color:var(--pos)}
-.verdict.ask{background:var(--warn-bg);color:var(--warn)}
 .note{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--r);padding:12px 14px;font-size:13px;color:var(--accent-dark);margin-bottom:20px}
 .note b{font-weight:600}
 
-/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width:1120px){
   .tiles{grid-template-columns:repeat(2,1fr)}
   .cols2{grid-template-columns:1fr}
@@ -387,12 +357,10 @@ table.data td.r,table.data th.r{text-align:right}
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<symbol id="i-hub" viewBox="0 0 24 24"><path d="M4 7h6v6H4zM14 4h6v7h-6zM4 17h6v3H4zM14 15h6v5h-6z"/></symbol>
 <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></symbol>
 <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></symbol>
 <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.2 2.7-5.2 6-5.2s6 2 6 5.2"/><path d="M16.5 5.3a3.2 3.2 0 0 1 0 6.2M18 19.8c0-2.3-.8-3.6-2-4.5"/></symbol>
 <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 20v-6M13 20V9M18 20v-9"/></symbol>
-<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v6c0 4.4-3 8.1-7.5 9.4C7.5 20.1 4.5 16.4 4.5 12V6z"/><path d="M9.2 12.2l2 2 3.6-4"/></symbol>
 <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 15V10a6 6 0 0 0-12 0v5l-1.6 2.4h15.2z"/><path d="M10 20a2.2 2.2 0 0 0 4 0"/></symbol>
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2"/><path d="M15.2 15.2L20 20"/></symbol>
 <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.8l4.4 4.4L19 7.5"/></symbol>
@@ -401,9 +369,12 @@ table.data td.r,table.data th.r{text-align:right}
 <symbol id="i-caret" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
 <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></symbol>
 <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
-<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
 <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13.5a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1"/><path d="M14 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/></symbol>
+<symbol id="i-cash" viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3.5v3M14 3.5v3M10 17.5v3M14 17.5v3M3.5 10h3M3.5 14h3M17.5 10h3M17.5 14h3"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h10v9H3z"/><path d="M13 10.5h4l3 3v2.5h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
 </defs></svg>
 
 <div class="ribbon">
@@ -482,14 +453,13 @@ table.data td.r,table.data th.r{text-align:right}
    Sample data — invented for this walkthrough
    ═══════════════════════════════════════════════════════════ */
 const P = {
-  DB:{n:"Dominic Baril",   r:"CEO",              c:"#14657C"},
-  VB:{n:"Vincent Bélanger",r:"CFO",              c:"#2a78d6"},
-  PH:{n:"Pierre-Hugo Vigneux", r:"Engineering",  c:"#eb6834"},
-  PL:{n:"Patrice Lavoie",  r:"Field & delivery", c:"#1baf7a"},
-  BT:{n:"Benoit Tremblay", r:"Systems",          c:"#4a3aa7"},
-  SYS:{n:"My Tessellate",  r:"Automation",       c:"#6E6A63"}
+  DB:{n:"Dominic Baril",       r:"CEO",              c:"#14657C"},
+  VB:{n:"Vincent Bélanger",    r:"CFO",              c:"#2a78d6"},
+  PH:{n:"Pierre-Hugo Vigneux", r:"Engineering",      c:"#eb6834"},
+  PL:{n:"Patrice Lavoie",      r:"Field & delivery", c:"#1baf7a"},
+  BT:{n:"Benoit Tremblay",     r:"Systems",          c:"#4a3aa7"},
+  SYS:{n:"My Tessellate",      r:"Automation",       c:"#6E6A63"}
 };
-const ini = k => k;
 /* Fill colours carry white text, so every one clears 4.5:1 against #fff. */
 const STAGE = {
   early:    {t:"Early",      c:"#6B6660"},
@@ -501,11 +471,11 @@ const STAGE = {
   lost:     {t:"Lost",       c:"#B32B2B"}
 };
 const PHASE = {
-  spec:  {t:"Spec",         c:"#6B6660"},
-  build: {t:"In build",     c:"#1F63B4"},
-  test:  {t:"Field test",   c:"#8A5E00"},
-  deliv: {t:"Delivered",    c:"#0A7A2E"},
-  block: {t:"Blocked",      c:"#B32B2B"}
+  spec:  {t:"Spec",       c:"#6B6660"},
+  build: {t:"In build",   c:"#1F63B4"},
+  test:  {t:"Field test", c:"#8A5E00"},
+  block: {t:"Blocked",    c:"#B32B2B"},
+  deliv: {t:"Delivered",  c:"#0A7A2E"}
 };
 const APPR = {
   pending: {t:"Awaiting you",c:"#8A5E00"},
@@ -516,74 +486,72 @@ const APPR = {
 
 const CUSTOMERS = [
   {id:"nordvik", name:"Nordvik Mining Group", loc:"Sudbury, ON", type:"Customer",
-   owner:"PH", rev:412000, prev:298000, invoices:9, openDeals:2, since:"2024",
+   owner:"PH", rev:412000, prev:298000, invoices:9, since:"2024",
    contacts:[{n:"Astrid Halvorsen",t:"VP Operations",e:"a.halvorsen@nordvik.example"},{n:"Ray Tremblay",t:"Site lead, Shaft 4",e:"r.tremblay@nordvik.example"}],
    summary:"Three autonomy units underground since March. Expansion to a second site under discussion; Astrid wants the uptime report monthly."},
   {id:"boreal", name:"Boreal Energy Partners", loc:"Bécancour, QC", type:"Customer",
-   owner:"PL", rev:286500, prev:141000, invoices:6, openDeals:1, since:"2025",
+   owner:"PL", rev:286500, prev:141000, invoices:6, since:"2025",
    contacts:[{n:"Marc Lessard",t:"Director, Asset integrity",e:"m.lessard@boreal.example"}],
    summary:"Pipeline inspection pilot converted in June. Procurement runs on 45-day terms; Vincent flagged the late invoice twice."},
   {id:"laurentide", name:"Laurentide Aggregates", loc:"Saint-Jérôme, QC", type:"Customer",
-   owner:"PH", rev:168000, prev:172000, invoices:5, openDeals:0, since:"2024",
+   owner:"PH", rev:168000, prev:172000, invoices:5, since:"2024",
    contacts:[{n:"Josée Bilodeau",t:"Plant manager",e:"j.bilodeau@laurentide.example"}],
    summary:"Steady, low touch. Flat year — worth a conversation about the second quarry before renewal in January."},
   {id:"argos", name:"Argos Defence Systems", loc:"Ottawa, ON", type:"Prospect",
-   owner:"DB", rev:0, prev:0, invoices:0, openDeals:1, since:"—",
+   owner:"DB", rev:0, prev:0, invoices:0, since:"—",
    contacts:[{n:"Helen Whitfield",t:"Director, Programs",e:"h.whitfield@argos.example"}],
    summary:"Controlled-goods conversation. Nothing technical shared outside Canada; NDA and security review first, per Dominic."},
   {id:"cascade", name:"Cascade Tunnelling", loc:"Vancouver, BC", type:"Prospect",
-   owner:"PL", rev:0, prev:0, invoices:0, openDeals:1, since:"—",
+   owner:"PL", rev:0, prev:0, invoices:0, since:"—",
    contacts:[{n:"Priya Raman",t:"Head of innovation",e:"p.raman@cascade.example"}],
    summary:"Came in through the mining show. GPS-free navigation is the whole reason they called; demo booked for October."},
   {id:"meridian", name:"Meridian Survey Co.", loc:"Halifax, NS", type:"Partner",
-   owner:"PH", rev:54000, prev:38000, invoices:3, openDeals:0, since:"2025",
+   owner:"PH", rev:54000, prev:38000, invoices:3, since:"2025",
    contacts:[{n:"Devon Clarke",t:"Survey operations",e:"d.clarke@meridian.example"}],
    summary:"Reseller in Atlantic Canada. Two referrals so far; commission model still informal."},
   {id:"kelsey", name:"Kelsey Pit Services", loc:"Timmins, ON", type:"Customer",
-   owner:"PL", rev:41000, prev:33000, invoices:2, openDeals:0, since:"2025",
+   owner:"PL", rev:41000, prev:33000, invoices:2, since:"2025",
    contacts:[{n:"Dale Kusiak",t:"Site supervisor",e:"d.kusiak@kelsey.example"}],
    summary:"One unit on a short lease, renewed once. Small, pays on time, and Patrice handles it alone."},
   {id:"tundra", name:"Tundra Logistics", loc:"Val-d'Or, QC", type:"Supplier",
-   owner:"VB", rev:0, prev:0, invoices:0, openDeals:0, since:"2023",
+   owner:"VB", rev:0, prev:0, invoices:0, since:"2023",
    contacts:[{n:"Luc Fortin",t:"Account manager",e:"l.fortin@tundra.example"}],
-   summary:"Freight to northern sites. Invoices arrive as PDF to the finance inbox — the approvals board is where they land now."}
+   summary:"Freight to northern sites. Invoices arrive as PDF to the finance inbox — the approvals queue is where they land now."}
 ];
 const custById = id => CUSTOMERS.find(c => c.id === id);
 
 const CRM_GROUPS = [
-  {id:"active", t:"Active customers", c:"#0ca30c"},
-  {id:"qual",   t:"Qualified prospects", c:"#2a78d6"},
-  {id:"early",  t:"Early conversations", c:"#7A7268"},
+  {id:"active", t:"Active customers", c:"#0A7A2E"},
+  {id:"qual",   t:"Qualified prospects", c:"#1F63B4"},
+  {id:"early",  t:"Early conversations", c:"#6B6660"},
   {id:"part",   t:"Partners & suppliers", c:"#4a3aa7"}
 ];
 const CRM = [
-  {g:"active",id:"c1",t:"Shaft 4 expansion — 2 more units",cust:"nordvik",own:["PH","DB"],stage:"proposal",next:"2026-09-24",val:240000,ctry:"CA",src:"Existing customer",last:"2 days ago"},
-  {g:"active",id:"c2",t:"Monthly uptime reporting",cust:"nordvik",own:["PL"],stage:"committed",next:"2026-09-18",val:18000,ctry:"CA",src:"Existing customer",last:"yesterday"},
-  {g:"active",id:"c3",t:"Pipeline inspection — phase 2",cust:"boreal",own:["PL"],stage:"qualified",next:"2026-09-30",val:156000,ctry:"CA",src:"Existing customer",last:"6 days ago"},
-  {g:"active",id:"c4",t:"Renewal, two quarries",cust:"laurentide",own:["PH"],stage:"early",next:"2026-10-15",val:96000,ctry:"CA",src:"Existing customer",last:"3 weeks ago"},
-  {g:"qual", id:"c5",t:"Tunnel autonomy demo",cust:"cascade",own:["PL","BT"],stage:"qualified",next:"2026-10-02",val:120000,ctry:"CA",src:"Mining show",last:"4 days ago"},
-  {g:"qual", id:"c6",t:"Programs conversation (NDA first)",cust:"argos",own:["DB"],stage:"early",next:"2026-09-16",val:0,ctry:"CA",src:"Referral",last:"today"},
-  {g:"early",id:"c7",t:"Inbound: open-pit survey fleet",cust:null,own:["DB"],stage:"early",next:"2026-09-19",val:0,ctry:"NO",src:"Website",last:"today"},
-  {g:"early",id:"c8",t:"Inbound: tailings dam monitoring",cust:null,own:["PH"],stage:"hold",next:"",val:0,ctry:"CL",src:"Website",last:"2 weeks ago"},
-  {g:"part", id:"c9",t:"Reseller terms — Atlantic Canada",cust:"meridian",own:["DB","VB"],stage:"proposal",next:"2026-09-22",val:0,ctry:"CA",src:"Partner",last:"5 days ago"},
-  {g:"part", id:"c10",t:"Freight rates 2027",cust:"tundra",own:["VB"],stage:"early",next:"2026-11-01",val:0,ctry:"CA",src:"Supplier",last:"1 week ago"}
+  {g:"active",id:"c1",t:"Shaft 4 expansion — 2 more units",cust:"nordvik",own:["PH","DB"],stage:"proposal",next:"2026-09-24",val:240000,src:"Existing customer",last:"2 days ago"},
+  {g:"active",id:"c2",t:"Monthly uptime reporting",cust:"nordvik",own:["PL"],stage:"committed",next:"2026-09-18",val:18000,src:"Existing customer",last:"yesterday"},
+  {g:"active",id:"c3",t:"Pipeline inspection — phase 2",cust:"boreal",own:["PL"],stage:"qualified",next:"2026-09-30",val:156000,src:"Existing customer",last:"6 days ago"},
+  {g:"active",id:"c4",t:"Renewal, two quarries",cust:"laurentide",own:["PH"],stage:"early",next:"2026-10-15",val:96000,src:"Existing customer",last:"3 weeks ago"},
+  {g:"qual", id:"c5",t:"Tunnel autonomy demo",cust:"cascade",own:["PL","BT"],stage:"qualified",next:"2026-10-02",val:120000,src:"Mining show",last:"4 days ago"},
+  {g:"qual", id:"c6",t:"Programs conversation (NDA first)",cust:"argos",own:["DB"],stage:"early",next:"2026-09-16",val:0,src:"Referral",last:"today"},
+  {g:"early",id:"c7",t:"Inbound: open-pit survey fleet",cust:null,own:["DB"],stage:"early",next:"2026-09-19",val:0,src:"Website",last:"today"},
+  {g:"early",id:"c8",t:"Inbound: tailings dam monitoring",cust:null,own:["PH"],stage:"hold",next:"",val:0,src:"Website",last:"2 weeks ago"},
+  {g:"part", id:"c9",t:"Reseller terms — Atlantic Canada",cust:"meridian",own:["DB","VB"],stage:"proposal",next:"2026-09-22",val:0,src:"Partner",last:"5 days ago"},
+  {g:"part", id:"c10",t:"Freight rates 2027",cust:"tundra",own:["VB"],stage:"early",next:"2026-11-01",val:0,src:"Supplier",last:"1 week ago"}
 ];
 
-const PROJ_GROUPS = [
-  {id:"stack", t:"Autonomy stack", c:"#2a78d6"},
-  {id:"field", t:"Field deployments", c:"#eb6834"},
-  {id:"grants",t:"Grant programs", c:"#1baf7a"}
-];
+/* One project record set; three departments read it through their own view. */
 const PROJ = [
-  {g:"stack",id:"p1",t:"GPS-free localisation v4.2",own:["PH"],phase:"build",from:1,to:62,jira:"TES-418",cust:null,risk:2},
-  {g:"stack",id:"p2",t:"Obstacle handling — dust and steam",own:["PH","BT"],phase:"test",from:18,to:80,jira:"TES-402",cust:"nordvik",risk:3},
-  {g:"stack",id:"p3",t:"Remote console hardening",own:["BT"],phase:"spec",from:55,to:100,jira:"TES-451",cust:null,risk:1},
-  {g:"field",id:"p4",t:"Nordvik Shaft 4 — install week",own:["PL"],phase:"build",from:30,to:52,jira:"TES-430",cust:"nordvik",risk:2},
-  {g:"field",id:"p5",t:"Boreal phase 2 — site survey",own:["PL","PH"],phase:"spec",from:44,to:70,jira:"TES-447",cust:"boreal",risk:1},
-  {g:"field",id:"p6",t:"Cascade demo rig shipping",own:["PL"],phase:"block",from:36,to:58,jira:"TES-455",cust:"cascade",risk:3},
-  {g:"grants",id:"p7",t:"NRC IRAP — interim report",own:["VB","DB"],phase:"build",from:20,to:46,jira:"—",cust:null,risk:2},
-  {g:"grants",id:"p8",t:"Prompt Québec — application",own:["VB"],phase:"deliv",from:4,to:28,jira:"—",cust:null,risk:0}
+  {dept:"stack",id:"p1",t:"GPS-free localisation v4.2",own:["PH"],phase:"build",from:1,to:62,jira:"TES-418",cust:null,risk:2},
+  {dept:"stack",id:"p2",t:"Obstacle handling — dust and steam",own:["PH","BT"],phase:"test",from:18,to:80,jira:"TES-402",cust:"nordvik",risk:3},
+  {dept:"stack",id:"p3",t:"Remote console hardening",own:["BT"],phase:"spec",from:55,to:100,jira:"TES-451",cust:null,risk:1},
+  {dept:"field",id:"p4",t:"Nordvik Shaft 4 — install week",own:["PL"],phase:"build",from:30,to:52,jira:"TES-430",cust:"nordvik",risk:2},
+  {dept:"field",id:"p5",t:"Boreal phase 2 — site survey",own:["PL","PH"],phase:"spec",from:44,to:70,jira:"TES-447",cust:"boreal",risk:1},
+  {dept:"field",id:"p6",t:"Cascade demo rig shipping",own:["PL"],phase:"block",from:36,to:58,jira:"TES-455",cust:"cascade",risk:3},
+  {dept:"field",id:"p9",t:"Laurentide — quarterly service visit",own:["PL"],phase:"deliv",from:8,to:26,jira:"TES-399",cust:"laurentide",risk:0},
+  {dept:"grants",id:"p7",t:"NRC IRAP — interim report",own:["VB","DB"],phase:"build",from:20,to:46,jira:"—",cust:null,risk:2},
+  {dept:"grants",id:"p8",t:"Prompt Québec — application",own:["VB"],phase:"deliv",from:4,to:28,jira:"—",cust:null,risk:0}
 ];
+const projFor = dept => PROJ.filter(p => p.dept === dept);
 
 const APPROVALS = [
   {id:"a1",t:"Tundra Logistics — freight, August",kind:"Supplier invoice",who:"VB",amt:8420,due:"2026-09-15",st:"pending",cust:"tundra"},
@@ -594,36 +562,66 @@ const APPROVALS = [
   {id:"a6",t:"Boreal — invoice 2026-038",kind:"Customer invoice",who:"VB",amt:58500,due:"2026-09-05",st:"paid",cust:"boreal"},
   {id:"a7",t:"Office chairs ×6",kind:"Purchase",who:"DB",amt:2100,due:"2026-09-08",st:"rejected",cust:null}
 ];
+const pendingAppr = () => APPROVALS.filter(a => a.st === "pending");
+
+/* The day's meetings: a brief before, a summary with tasks after. */
+const MEETINGS = [
+  {id:"mt1",time:"08:30",t:"Weekly pipeline review",who:["DB","PH","PL"],state:"done",
+   place:"Teams · 30 min",
+   summary:"Shaft 4 is the only deal that moves this week. Astrid needs the uptime figures before her board meeting on Thursday, and Boreal phase 2 is waiting on a survey date. Meridian's reseller terms have been open for five days.",
+   tasks:[
+     {t:"Pull uptime figures Mar–Aug for Nordvik",own:"PH",board:"Pipeline"},
+     {t:"Send Boreal a survey date",own:"PL",board:"Field deployments"},
+     {t:"Chase Meridian on reseller terms",own:"DB",board:"Pipeline"}
+   ]},
+  {id:"mt2",time:"13:30",t:"Nordvik — Shaft 4 expansion",who:["DB","PH"],state:"next",
+   place:"Teams · 45 min · Astrid Halvorsen, Ray Tremblay",cust:"nordvik",
+   brief:[
+     "Two more units, CAD 240,000. Their board decides on Thursday, so today is the last shaping call.",
+     "Uptime across the three units since March: 96.4%. Two stoppages, both dust-related, both closed.",
+     "The question they will raise: who pays for the second charging station.",
+     "Last touch: Pierre-Hugo, two days ago. Stage moved to Proposal yesterday."
+   ]},
+  {id:"mt3",time:"16:00",t:"Hub build sync",who:["DB","BT"],state:"next",
+   place:"Teams · 30 min",
+   brief:[
+     "Weeks one and two: email and the CRM foundation.",
+     "Copilot connector — who creates the Microsoft 365 account, and who owns the Azure subscription.",
+     "Finance is being prepared with Vincent, nothing implemented yet.",
+     "Decision needed: who at Tessellate owns the hub day to day."
+   ]}
+];
+const meetById = id => MEETINGS.find(m => m.id === id);
 
 const MY_ITEMS = [
-  {id:"m1",t:"Sign off Shaft 4 proposal before Astrid's board meeting",board:"CRM pipeline",bc:"#2a78d6",due:"2026-09-15",st:"proposal",own:"DB"},
-  {id:"m2",t:"Approve Tundra freight invoice — August",board:"Approvals",bc:"#eda100",due:"2026-09-12",st:"pending",own:"DB"},
-  {id:"m3",t:"Reply to Argos: NDA and security review first",board:"CRM pipeline",bc:"#2a78d6",due:"2026-09-16",st:"early",own:"DB"},
-  {id:"m4",t:"Decide who owns the hub day to day",board:"Projects & programs",bc:"#eb6834",due:"2026-09-21",st:"qualified",own:"DB"},
-  {id:"m5",t:"IRAP interim report — read Vincent's draft",board:"Projects & programs",bc:"#eb6834",due:"2026-09-25",st:"committed",own:"DB"},
-  {id:"m6",t:"Weekly: 15 min pipeline review with PH",board:"CRM pipeline",bc:"#2a78d6",due:"2026-09-26",st:"early",own:"DB"}
+  {id:"m1",t:"Sign off Shaft 4 proposal before Astrid's board meeting",board:"Pipeline",bc:"#2a78d6",due:"2026-09-15",st:"proposal"},
+  {id:"m2",t:"Approve Tundra freight invoice — August",board:"Invoices & expenses",bc:"#eda100",due:"2026-09-12",st:"pending"},
+  {id:"m3",t:"Reply to Argos: NDA and security review first",board:"Pipeline",bc:"#2a78d6",due:"2026-09-16",st:"early"},
+  {id:"m4",t:"Decide who owns the hub day to day",board:"Field deployments",bc:"#eb6834",due:"2026-09-21",st:"qualified"},
+  {id:"m5",t:"IRAP interim report — read Vincent's draft",board:"Grant programs",bc:"#1baf7a",due:"2026-09-25",st:"committed"},
+  {id:"m6",t:"Weekly: 15 min pipeline review with PH",board:"Pipeline",bc:"#2a78d6",due:"2026-09-26",st:"early"}
 ];
 
 const NOTIFS = [
   {who:"PH",txt:"mentioned you on <b>Shaft 4 expansion</b>: Astrid asked for the uptime numbers before Thursday.",t:"12 min ago",unread:true},
   {who:"VB",txt:"sent <b>Tundra Logistics — freight, August</b> for your approval.",t:"1 hour ago",unread:true},
-  {who:"SYS",txt:"linked 14 emails from the finance inbox to <b>Approvals</b>.",t:"3 hours ago",unread:true},
-  {who:"PL",txt:"moved <b>Cascade demo rig shipping</b> to Blocked — carrier has no slot before the 24th.",t:"yesterday",unread:false}
+  {who:"SYS",txt:"extracted 3 tasks from <b>Weekly pipeline review</b> and put them on the boards.",t:"3 hours ago",unread:true},
+  {who:"PL",txt:"moved <b>Cascade demo rig shipping</b> to Blocked — the carrier has no slot before the 24th.",t:"yesterday",unread:false}
 ];
 
 const THREADS = {
   c1:[{who:"PH",t:"2 days ago",m:"Astrid confirmed budget for two units. She needs the uptime numbers from Shaft 4 before her board meeting on Thursday."},
       {who:"DB",t:"yesterday",m:"@Pierre-Hugo Vigneux pull the March–August figures and I will write the cover note myself."},
-      {who:"PH",t:"18 hours ago",m:"Proposal draft attached. Numbers come from the uptime export, not typed by hand."}],
+      {who:"PH",t:"18 hours ago",m:"Proposal draft attached. Numbers come straight from the uptime export, not typed by hand."}],
   a1:[{who:"VB",t:"3 days ago",m:"Invoice arrived in the finance inbox. Matches the August shipments, two northern sites."},
       {who:"VB",t:"3 days ago",m:"@Dominic Baril your approval is the only thing missing before I schedule payment."}],
-  p6:[{who:"PL",t:"yesterday",m:"Carrier has nothing before the 24th. Demo is booked for October 2, so this is now the critical path."},
+  p6:[{who:"PL",t:"yesterday",m:"The carrier has nothing before the 24th. The demo is booked for October 2, so this is now the critical path."},
       {who:"BT",t:"20 hours ago",m:"Option: ship the smaller rig and run the demo on one unit. Not ideal but it holds the date."}]
 };
 const FILES = {
   c1:[{n:"Nordvik — Shaft 4 proposal v3.pdf",m:"PDF · 1.4 MB · Pierre-Hugo, 2 days ago"},
       {n:"Uptime Mar–Aug 2026.xlsx",m:"Spreadsheet · 212 KB · Pierre-Hugo, 2 days ago"}],
-  a1:[{n:"Tundra INV-88421.pdf",m:"PDF · 96 KB · from finance inbox"}],
+  a1:[{n:"Tundra INV-88421.pdf",m:"PDF · 96 KB · from the finance inbox"}],
   p6:[{n:"Rig crate dimensions.pdf",m:"PDF · 320 KB · Patrice, 4 days ago"}]
 };
 const ACTIVITY = {
@@ -631,21 +629,17 @@ const ACTIVITY = {
       {t:"yesterday",m:"Dominic changed Stage from Qualified to Proposal"},
       {t:"2 days ago",m:"Pierre-Hugo set Value to CAD 240,000"},
       {t:"2 days ago",m:"Item linked to account Nordvik Mining Group"}],
-  a1:[{t:"3 days ago",m:"Item created from email in the finance inbox"},
+  a1:[{t:"3 days ago",m:"Item created from an email in the finance inbox"},
       {t:"3 days ago",m:"Vincent set Amount to CAD 8,420"}],
   p6:[{t:"yesterday",m:"Patrice changed Phase from In build to Blocked"},
       {t:"4 days ago",m:"Patrice attached Rig crate dimensions.pdf"}]
 };
 
-/* Statistics */
+/* Statistics — every figure reconciles with the boards above. */
 const REV_BY_ACCOUNT = [
   {k:"Nordvik Mining Group",v:412000},{k:"Boreal Energy Partners",v:286500},
   {k:"Laurentide Aggregates",v:168000},{k:"Meridian Survey Co.",v:54000},
   {k:"Kelsey Pit Services",v:41000},{k:"Other accounts",v:36500}
-];
-const PIPE_BY_STAGE = [
-  {k:"Early",v:96000,n:4},{k:"Qualified",v:276000,n:2},
-  {k:"Proposal",v:240000,n:2},{k:"Committed",v:18000,n:1}
 ];
 const MONTHS = ["Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"];
 const TREND = {
@@ -657,18 +651,26 @@ const PRODUCT_LINES = [
   {k:"Integration & commissioning",v:176000,u:14},{k:"Support contracts",v:98000,u:9},
   {k:"Spare parts",v:62000,u:143}
 ];
+/* Derived, so the chart can never drift from the pipeline board. */
+function pipelineByStage(){
+  return ["early","qualified","proposal","committed"].map(s => {
+    const rows = CRM.filter(r => r.stage === s);
+    return {k:STAGE[s].t, v:rows.reduce((a,r) => a + r.val, 0), n:rows.length};
+  });
+}
 
 /* ═══════════════════════════════════════════════════════════
    Helpers
    ═══════════════════════════════════════════════════════════ */
-const $  = s => document.querySelector(s);
+const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const cad = n => "CAD " + n.toLocaleString("en-CA");
-const k$  = n => n >= 1000000 ? "CAD " + (n/1000000).toFixed(2) + "M"
-                : n >= 1000 ? "CAD " + Math.round(n/1000) + "k" : "CAD " + n;
-const av  = (key, cls) => {
+const k$ = n => n >= 1000000 ? "CAD " + (n/1000000).toFixed(2) + "M"
+              : n >= 1000 ? "CAD " + Math.round(n/1000) + "k" : "CAD " + n;
+const av = (key, cls) => {
   const p = P[key]; if (!p) return "";
-  return `<span class="av ${cls||""}" style="background:${p.c}" title="${esc(p.n)} — ${esc(p.r)}">${esc(key)}</span>`;
+  const label = key === "SYS" ? "MT" : key;
+  return `<span class="av ${cls||""}" style="background:${p.c}" title="${esc(p.n)} — ${esc(p.r)}">${esc(label)}</span>`;
 };
 const people = ks => `<span class="people">${ks.map(k => av(k,"sm")).join("")}</span>`;
 const fill = (map,key) => map[key]
@@ -685,21 +687,30 @@ const dateCell = iso => {
 const custChip = id => {
   const c = custById(id);
   if (!c) return `<span class="ghost">Not linked</span>`;
-  const p = P[c.owner];
-  return `<button class="cust-chip" data-cust="${c.id}"><span class="av sm" style="background:${p.c}">${esc(c.owner)}</span><span class="t">${esc(c.name)}</span></button>`;
+  return `<button class="cust-chip" data-cust="${c.id}"><span class="av sm" style="background:${P[c.owner].c}">${esc(c.owner)}</span><span class="t">${esc(c.name)}</span></button>`;
 };
 
 /* ═══════════════════════════════════════════════════════════
-   Navigation
+   Navigation — by department, the way the team is organised
    ═══════════════════════════════════════════════════════════ */
+const PROJ_VIEWS = {
+  field:{title:"Field deployments", dept:"Operations", members:["PL","PH"],
+    desc:"Installs, surveys and service visits, grouped by where each one stands, so a blocked job cannot hide."},
+  stack:{title:"Autonomy stack", dept:"Engineering", members:["PH","BT"],
+    desc:"Engineering work with the JIRA key beside it. Tickets stay in JIRA — this board references them and never copies them."},
+  grants:{title:"Grant programs", dept:"Finance", members:["VB","DB"],
+    desc:"Applications and reporting, with the deadline visible. Vincent owns these; Dominic signs them."}
+};
 const VIEWS = [
-  {id:"home",    label:"Home",               icon:"i-home",  group:"", tail:() => MY_ITEMS.length},
-  {id:"crm",     label:"CRM pipeline",       icon:"i-board", group:"Boards", dot:"#2a78d6", tail:() => CRM.length},
-  {id:"projects",label:"Projects & programs",icon:"i-board", group:"Boards", dot:"#eb6834", tail:() => PROJ.length},
-  {id:"approvals",label:"Approvals",         icon:"i-board", group:"Boards", dot:"#eda100", tail:() => APPROVALS.filter(a => a.st === "pending").length},
-  {id:"customers",label:"Accounts",          icon:"i-users", group:"Customer program"},
-  {id:"stats",   label:"Statistics",         icon:"i-chart", group:"Customer program"},
-  {id:"rules",   label:"AI & data rules",    icon:"i-shield",group:"Governance"}
+  {id:"home",      label:"Home",                icon:"i-home",  group:"",            tail:() => MY_ITEMS.length},
+  {id:"pipeline",  label:"Pipeline",            icon:"i-board", group:"Sales",       dot:"#2a78d6", tail:() => CRM.length},
+  {id:"accounts",  label:"Accounts",            icon:"i-users", group:"Sales",       tail:() => CUSTOMERS.length},
+  {id:"salesstats",label:"Sales statistics",    icon:"i-chart", group:"Sales"},
+  {id:"field",     label:"Field deployments",   icon:"i-truck", group:"Operations",  dot:"#eb6834", tail:() => projFor("field").length},
+  {id:"stack",     label:"Autonomy stack",      icon:"i-cpu",   group:"Engineering", dot:"#4a3aa7", tail:() => projFor("stack").length},
+  {id:"approvals", label:"Invoices & expenses", icon:"i-cash",  group:"Finance",     dot:"#eda100", tail:() => pendingAppr().length},
+  {id:"grants",    label:"Grant programs",      icon:"i-board", group:"Finance",     dot:"#1baf7a", tail:() => projFor("grants").length},
+  {id:"finstats",  label:"Revenue statistics",  icon:"i-chart", group:"Finance"}
 ];
 let current = "home";
 
@@ -710,29 +721,35 @@ function renderNav(){
       if (v.group) html += `<div class="group-label">${esc(v.group)}</div>`;
       lastGroup = v.group;
     }
+    const tail = typeof v.tail === "function" ? v.tail() : v.tail;
     html += `<a data-view="${v.id}" class="${v.id===current?"on":""}">`
          +  (v.dot ? `<span class="dot" style="background:${v.dot}"></span>`
                    : `<svg class="i"><use href="#${v.icon}"/></svg>`)
          +  `<span>${esc(v.label)}</span>`
-         +  (v.tail ? `<span class="tail">${typeof v.tail === "function" ? v.tail() : v.tail}</span>` : "")
+         +  (tail !== undefined ? `<span class="tail">${tail}</span>` : "")
          +  `</a>`;
   }
   $("#nav").innerHTML = html;
 }
+function wireFocus(){
+  document.querySelectorAll("[data-item],[data-cust],[data-meeting]").forEach(el => {
+    if (!el.hasAttribute("tabindex") && el.tagName !== "BUTTON") el.tabIndex = 0;
+  });
+}
+const ROUTES = {
+  home:() => viewHome(), pipeline:() => viewPipeline(), accounts:() => viewAccounts(),
+  salesstats:() => viewSalesStats(), field:() => viewProjects("field"),
+  stack:() => viewProjects("stack"), grants:() => viewProjects("grants"),
+  approvals:() => viewApprovals(), finstats:() => viewFinStats()
+};
 function go(id, skipHash){
-  if (!VIEWS.some(v => v.id === id)) id = "home";
+  if (!ROUTES[id]) id = "home";
   current = id; renderNav();
   $("#scroll").scrollTop = 0;
   $("#nav").classList.remove("open");
   if (!skipHash && location.hash.slice(1) !== id) location.hash = id;
-  ({home:viewHome, crm:viewCRM, projects:viewProjects, approvals:viewApprovals,
-    customers:viewCustomers, stats:viewStats, rules:viewRules}[id])();
+  ROUTES[id]();
   wireFocus();
-}
-function wireFocus(){
-  document.querySelectorAll("[data-item],[data-cust]").forEach(el => {
-    if (!el.hasAttribute("tabindex") && el.tagName !== "BUTTON") el.tabIndex = 0;
-  });
 }
 window.addEventListener("hashchange", () => {
   const id = location.hash.slice(1);
@@ -747,9 +764,22 @@ new MutationObserver(() => wireFocus()).observe(document.getElementById("view"),
    ═══════════════════════════════════════════════════════════ */
 function viewHome(){
   const pipeline = CRM.reduce((s,r) => s + r.val, 0);
-  const pending  = APPROVALS.filter(a => a.st === "pending");
+  const pending = pendingAppr();
   const pendingSum = pending.reduce((s,a) => s + a.amt, 0);
   const late = MY_ITEMS.filter(i => i.due && new Date(i.due) < TODAY).length;
+
+  const meetings = MEETINGS.map(m => `
+    <div class="rowitem" data-meeting="${m.id}">
+      <span class="mtime ${m.state==="done"?"past":""}">${m.time}</span>
+      <div class="body">
+        <div class="t">${esc(m.t)}</div>
+        <div class="m">${esc(m.place)}</div>
+      </div>
+      ${people(m.who)}
+      ${m.state === "done"
+        ? `<span class="tag ok">Summary · ${m.tasks.length} tasks</span>`
+        : `<span class="tag"><svg class="i" style="width:12px;height:12px;display:inline-block;vertical-align:-2px"><use href="#i-file"/></svg> Brief</span>`}
+    </div>`).join("");
 
   const items = MY_ITEMS.map(i => `
     <div class="rowitem" data-item="${i.id}">
@@ -763,10 +793,11 @@ function viewHome(){
     </div>`).join("");
 
   const boards = [
-    {id:"crm",t:"CRM pipeline",d:"Customers, prospects, partners",n:CRM.length,c:"#2a78d6"},
-    {id:"projects",t:"Projects & programs",d:"Autonomy stack, deployments, grants",n:PROJ.length,c:"#eb6834"},
-    {id:"approvals",t:"Approvals",d:`Invoices and expenses, ${APPROVALS.length} in the queue`,n:APPROVALS.filter(a => a.st === "pending").length,c:"#eda100"},
-    {id:"customers",t:"Accounts",d:"The customer record everything points at",n:CUSTOMERS.length,c:"#14657C"}
+    {id:"pipeline",t:"Pipeline",d:"Customers, prospects, partners",n:CRM.length,c:"#2a78d6"},
+    {id:"field",t:"Field deployments",d:"Installs, surveys, service visits",n:projFor("field").length,c:"#eb6834"},
+    {id:"stack",t:"Autonomy stack",d:"Engineering work, JIRA referenced",n:projFor("stack").length,c:"#4a3aa7"},
+    {id:"approvals",t:"Invoices & expenses",d:`Finance queue, ${APPROVALS.length} in total`,n:pending.length,c:"#eda100"},
+    {id:"accounts",t:"Accounts",d:"The customer record everything points at",n:CUSTOMERS.length,c:"#14657C"}
   ].map(b => `
     <div class="rowitem" data-view="${b.id}">
       <span class="dot" style="width:10px;height:10px;border-radius:3px;background:${b.c}"></span>
@@ -778,10 +809,9 @@ function viewHome(){
     <div class="phead">
       <div>
         <h1>Good morning, Dominic</h1>
-        <p>Everything waiting on you, across every board. Two hours of inbox archaeology replaced by one list.</p>
+        <p>Your day, and everything waiting on you across every department. Two hours of inbox archaeology replaced by one page.</p>
       </div>
       <span class="sp"></span>
-      <button class="btn" data-view="stats"><svg class="i"><use href="#i-chart"/></svg> Statistics</button>
       <button class="btn primary"><svg class="i"><use href="#i-plus"/></svg> New item</button>
     </div>
 
@@ -792,18 +822,24 @@ function viewHome(){
         <div class="sub">${cad(pendingSum)} in total</div></div>
       <div class="tile"><div class="lab">Your items past due</div><div class="val">${late}</div>
         <div class="sub">${late ? "Oldest: 2 days" : "Nothing late"}</div></div>
-      <div class="tile"><div class="lab">Inbox items linked</div><div class="val">14</div>
-        <div class="sub">Finance inbox, last 7 days</div></div>
+      <div class="tile"><div class="lab">Meetings today</div><div class="val">${MEETINGS.length}</div>
+        <div class="sub">${MEETINGS.filter(m => m.state==="next").length} still to come</div></div>
     </div>
+
+    <section class="panel">
+      <header><h2>Today</h2><span class="pill">${MEETINGS.length}</span><span class="sp"></span>
+        <span class="hint">Monday 14 September · from your calendar</span></header>
+      <div class="rows">${meetings}</div>
+    </section>
 
     <div class="cols2">
       <section class="panel">
         <header><h2>My items</h2><span class="pill">${MY_ITEMS.length}</span><span class="sp"></span>
-          <span class="hint">Across all boards</span></header>
+          <span class="hint">Across every board</span></header>
         <div class="rows">${items}</div>
       </section>
       <section class="panel">
-        <header><h2>Boards</h2><span class="sp"></span><button class="btn sm"><svg class="i"><use href="#i-plus"/></svg> New board</button></header>
+        <header><h2>Where work lives</h2><span class="sp"></span><button class="btn sm"><svg class="i"><use href="#i-plus"/></svg> New board</button></header>
         <div class="rows">${boards}</div>
       </section>
     </div>
@@ -813,7 +849,7 @@ function viewHome(){
         <span class="hint">Nothing is paid, sent or booked without a click here</span></header>
       <div class="rows">${pending.map(a => `
         <div class="rowitem" data-item="${a.id}">
-          <span class="av sm" style="background:${P[a.who].c}">${a.who}</span>
+          ${av(a.who,"sm")}
           <div class="body"><div class="t">${esc(a.t)}</div>
             <div class="m"><span class="tag">${esc(a.kind)}</span>${a.cust ? `<span>${esc(custById(a.cust).name)}</span>` : ""}</div></div>
           <strong style="font-variant-numeric:tabular-nums">${cad(a.amt)}</strong>
@@ -825,10 +861,10 @@ function viewHome(){
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Board renderer (table + kanban)
+   Board rendering
    ═══════════════════════════════════════════════════════════ */
 const collapsed = new Set();
-let boardMode = {crm:"table", projects:"table"};
+const boardMode = {pipeline:"table", field:"table", stack:"table", grants:"table"};
 
 function boardShell(key, title, desc, members, body){
   return `
@@ -852,14 +888,15 @@ function boardShell(key, title, desc, members, body){
     </section>`;
 }
 
-function groupedTable(groups, rows, cols, sumKey){
+function groupedTable(groups, rows, cols, sumKey, groupKey){
   let html = `<div class="tblwrap"><table class="board"><thead><tr>`;
-  cols.forEach(c => html += `<th class="${c.num?"num":""}" style="${c.w?`width:${c.w}`:""}">${esc(c.t)}</th>`);
+  cols.forEach(c => html += `<th class="${c.num?"num":""}">${esc(c.t)}</th>`);
   html += `</tr></thead><tbody>`;
   for (const g of groups){
-    const gr = rows.filter(r => r.g === g.id);
+    const gr = rows.filter(r => r[groupKey] === g.id);
+    if (!gr.length) continue;
     const isOpen = !collapsed.has(g.id);
-    const sum = sumKey ? gr.reduce((s,r) => s + (r[sumKey]||0), 0) : null;
+    const sum = sumKey ? gr.reduce((s,r) => s + (r[sumKey]||0), 0) : 0;
     html += `<tr class="grouphead"><td colspan="${cols.length}"><div class="gh">
         <button class="caret" data-group="${g.id}" aria-label="Collapse group">
           <svg class="i" style="transform:rotate(${isOpen?90:0}deg);transition:transform .15s"><use href="#i-caret"/></svg></button>
@@ -876,11 +913,11 @@ function groupedTable(groups, rows, cols, sumKey){
   return html + `</tbody></table></div>`;
 }
 
-function kanban(colDefs, rows, statusKey, map){
-  return `<div class="kanban">` + colDefs.map(cd => {
-    const cards = rows.filter(r => r[statusKey] === cd.id);
+function kanban(colIds, rows, statusKey, map){
+  return `<div class="kanban">` + colIds.map(id => {
+    const cards = rows.filter(r => r[statusKey] === id);
     return `<div class="kcol">
-      <h3><span class="bar" style="background:${map[cd.id].c}"></span>${esc(map[cd.id].t)}<span class="n">${cards.length}</span></h3>
+      <h3><span class="bar" style="background:${map[id].c}"></span>${esc(map[id].t)}<span class="n">${cards.length}</span></h3>
       ${cards.map(r => `<div class="kcard" data-item="${r.id}">
           <div class="kt">${esc(r.t)}</div>
           <div class="kmeta">${people(r.own)}${r.cust ? `<span class="tag">${esc(custById(r.cust).name)}</span>` : ""}
@@ -890,9 +927,9 @@ function kanban(colDefs, rows, statusKey, map){
   }).join("") + `</div>`;
 }
 
-function viewCRM(){
+function viewPipeline(){
   const cols = [
-    {t:"Item", w:"30%", cell:r => `<div class="title-cell"><span class="t">${esc(r.t)}</span></div>`},
+    {t:"Item", cell:r => `<div class="title-cell"><span class="t">${esc(r.t)}</span></div>`},
     {t:"Account", cell:r => custChip(r.cust)},
     {t:"Owner", cell:r => people(r.own)},
     {t:"Stage", tight:true, cell:r => fill(STAGE, r.stage)},
@@ -901,17 +938,21 @@ function viewCRM(){
     {t:"Source", cell:r => `<span class="tag">${esc(r.src)}</span>`},
     {t:"Last activity", cell:r => `<span style="color:var(--muted);font-size:12px">${esc(r.last)}</span>`}
   ];
-  const body = boardMode.crm === "table"
-    ? groupedTable(CRM_GROUPS, CRM, cols, "val")
-    : kanban([{id:"early"},{id:"qualified"},{id:"proposal"},{id:"committed"},{id:"won"}], CRM, "stage", STAGE);
-  $("#view").innerHTML = boardShell("crm","CRM pipeline",
+  const body = boardMode.pipeline === "table"
+    ? groupedTable(CRM_GROUPS, CRM, cols, "val", "g")
+    : kanban(["early","qualified","proposal","committed","won"], CRM, "stage", STAGE);
+  $("#view").innerHTML = boardShell("pipeline","Pipeline",
     "The customers, prospects and partners that live in three inboxes today. One row per conversation, linked to the account record.",
     ["DB","PH","PL","VB"], body);
 }
 
-function viewProjects(){
+function viewProjects(dept){
+  const meta = PROJ_VIEWS[dept];
+  const rows = projFor(dept);
+  const phaseIds = ["spec","build","test","block","deliv"];
+  const phaseGroups = phaseIds.map(id => ({id, t:PHASE[id].t, c:PHASE[id].c}));
   const cols = [
-    {t:"Deliverable", w:"28%", cell:r => `<div class="title-cell"><span class="t">${esc(r.t)}</span></div>`},
+    {t:"Deliverable", cell:r => `<div class="title-cell"><span class="t">${esc(r.t)}</span></div>`},
     {t:"Owner", cell:r => people(r.own)},
     {t:"Phase", tight:true, cell:r => fill(PHASE, r.phase)},
     {t:"Sep — Dec", cell:r => `<div class="timeline"><i style="left:${r.from}%;width:${Math.max(r.to-r.from,4)}%"></i></div>`},
@@ -920,29 +961,28 @@ function viewProjects(){
         : `<span class="tag"><svg class="i" style="width:12px;height:12px;display:inline-block;vertical-align:-2px"><use href="#i-link"/></svg> ${esc(r.jira)}</span>`},
     {t:"Risk", cell:r => `<span class="risk">${[1,2,3].map(i => `<b class="${i<=r.risk?"on":""}"></b>`).join("")}</span>`}
   ];
-  const body = boardMode.projects === "table"
-    ? groupedTable(PROJ_GROUPS, PROJ, cols, null)
-    : kanban([{id:"spec"},{id:"build"},{id:"test"},{id:"deliv"},{id:"block"}], PROJ, "phase", PHASE);
-  $("#view").innerHTML = boardShell("projects","Projects & programs",
-    "Delivery and grant work, side by side with who owns it. Engineering tickets stay in JIRA — this board references them, it never copies them.",
-    ["PH","PL","BT","VB"], body);
+  const body = boardMode[dept] === "table"
+    ? groupedTable(phaseGroups, rows, cols, null, "phase")
+    : kanban(phaseIds, rows, "phase", PHASE);
+  $("#view").innerHTML = boardShell(dept, meta.title, meta.desc, meta.members, body);
 }
 
 function viewApprovals(){
   const order = {pending:0, approved:1, paid:2, rejected:3};
   const rows = [...APPROVALS].sort((a,b) => order[a.st]-order[b.st] || a.due.localeCompare(b.due));
+  const pending = pendingAppr();
   $("#view").innerHTML = `
     <div class="phead">
-      <div><h1>Approvals</h1><p>Payments, invoices and expenses in one queue. The system proposes; a person decides. Nothing leaves the building on a schedule.</p></div>
-      <span class="sp"></span><div class="people">${people(["DB","VB"])}</div>
+      <div><h1>Invoices &amp; expenses</h1><p>Supplier invoices, customer invoices, purchases and expense claims in one queue. The hub proposes; a person decides.</p></div>
+      <span class="sp"></span><div class="people">${people(["VB","DB"])}</div>
     </div>
-    <div class="note"><b>How this works:</b> items arrive from the finance inbox and from the field, land here with the document attached, and wait. Approve, reject or ask a question — every outcome is written to the item's activity log with your name on it.</div>
+    <div class="note"><b>How this works:</b> items arrive from the finance inbox and from the field, land here with the document attached, and wait. Approve, reject or ask a question — every outcome is written to the item's activity log with your name on it. Nothing is paid on a schedule.</div>
     <section class="panel">
-      <header><h2>Queue</h2><span class="pill">${rows.filter(r=>r.st==="pending").length} awaiting you</span><span class="sp"></span>
-        <span class="hint">Sorted by what is waiting, then by due date</span></header>
+      <header><h2>Queue</h2><span class="pill">${pending.length} awaiting you</span><span class="sp"></span>
+        <span class="hint">What is waiting first, then by due date</span></header>
       <div class="tblwrap"><table class="board">
-        <thead><tr><th style="width:32%">Item</th><th>Type</th><th>Requested by</th><th>Account</th>
-          <th class="num">Amount</th><th>Due</th><th>Status</th><th style="width:160px">Decision</th></tr></thead>
+        <thead><tr><th>Item</th><th>Type</th><th>Requested by</th><th>Account</th>
+          <th class="num">Amount</th><th>Due</th><th>Status</th><th>Decision</th></tr></thead>
         <tbody>${rows.map(a => `
           <tr class="row" data-item="${a.id}">
             <td><div class="title-cell"><span class="t">${esc(a.t)}</span></div></td>
@@ -962,27 +1002,28 @@ function viewApprovals(){
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Customer program
+   Accounts — the customer record the boards point at
    ═══════════════════════════════════════════════════════════ */
-function viewCustomers(){
+const linkedCount = id =>
+  CRM.filter(r => r.cust === id).length + PROJ.filter(r => r.cust === id).length + APPROVALS.filter(r => r.cust === id).length;
+
+function viewAccounts(){
   const cards = CUSTOMERS.map(c => {
     const yoy = c.prev ? Math.round((c.rev - c.prev) / c.prev * 100) : null;
-    const linked = CRM.filter(r => r.cust === c.id).length + PROJ.filter(r => r.cust === c.id).length + APPROVALS.filter(r => r.cust === c.id).length;
     return `<button class="custcard" data-cust="${c.id}">
       <h3>${av(c.owner,"sm")} ${esc(c.name)}</h3>
       <div class="loc">${esc(c.type)} · ${esc(c.loc)} · since ${esc(c.since)}</div>
       <dl>
         <div><dt>Revenue, 12 m</dt><dd>${c.rev ? k$(c.rev) : "—"}</dd></div>
         <div><dt>Year on year</dt><dd style="color:${yoy===null?"var(--muted2)":yoy>=0?"var(--pos)":"var(--neg)"}">${yoy===null?"—":(yoy>0?"+":"")+yoy+"%"}</dd></div>
-        <div><dt>Open items</dt><dd>${linked}</dd></div>
+        <div><dt>Open items</dt><dd>${linkedCount(c.id)}</dd></div>
         <div><dt>Contacts</dt><dd>${c.contacts.length}</dd></div>
       </dl>
     </button>`;
   }).join("");
-
   $("#view").innerHTML = `
     <div class="phead">
-      <div><h1>Accounts</h1><p>The customer program: one record per company, with the numbers, the people and every board item that points at it. Boards link here — they never keep their own copy.</p></div>
+      <div><h1>Accounts</h1><p>One record per company, with the numbers, the people and every board item that points at it. The boards link here; they never keep their own copy.</p></div>
       <span class="sp"></span>
       <button class="btn primary"><svg class="i"><use href="#i-plus"/></svg> New account</button>
     </div>
@@ -993,9 +1034,9 @@ function openCustomer(id){
   const c = custById(id);
   const yoy = c.prev ? Math.round((c.rev - c.prev) / c.prev * 100) : null;
   const items = [
-    ...CRM.filter(r => r.cust === id).map(r => ({t:r.t, b:"CRM pipeline", c:"#2a78d6", s:STAGE[r.stage].t})),
-    ...PROJ.filter(r => r.cust === id).map(r => ({t:r.t, b:"Projects", c:"#eb6834", s:PHASE[r.phase].t})),
-    ...APPROVALS.filter(r => r.cust === id).map(r => ({t:r.t, b:"Approvals", c:"#eda100", s:APPR[r.st].t}))
+    ...CRM.filter(r => r.cust === id).map(r => ({t:r.t, b:"Pipeline", c:"#2a78d6", s:STAGE[r.stage].t})),
+    ...PROJ.filter(r => r.cust === id).map(r => ({t:r.t, b:PROJ_VIEWS[r.dept].title, c:r.dept==="stack"?"#4a3aa7":"#eb6834", s:PHASE[r.phase].t})),
+    ...APPROVALS.filter(r => r.cust === id).map(r => ({t:r.t, b:"Invoices & expenses", c:"#eda100", s:APPR[r.st].t}))
   ];
   showDetail(`
     <header style="position:relative">
@@ -1011,64 +1052,85 @@ function openCustomer(id){
     </header>
     <div class="dbody">
       <p style="margin:0 0 18px;font-size:13.5px;color:var(--text2)">${esc(c.summary)}</p>
-
-      <h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 9px">Contacts</h3>
+      <h3 class="sec">Contacts</h3>
       ${c.contacts.map(p => `<div class="filecard">
           <span class="av" style="background:var(--card2);color:var(--text2)">${esc(p.n.split(" ").map(w=>w[0]).slice(0,2).join(""))}</span>
           <div style="flex:1"><div class="fn">${esc(p.n)}</div><div class="fm">${esc(p.t)} · ${esc(p.e)}</div></div>
           <button class="icon-btn" aria-label="Email"><svg class="i"><use href="#i-mail"/></svg></button>
         </div>`).join("")}
-
-      <h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:20px 0 9px">On boards <span class="pill">${items.length}</span></h3>
+      <h3 class="sec">On boards <span class="pill">${items.length}</span></h3>
       <div class="rows" style="border:1px solid var(--border);border-radius:8px">
         ${items.map(i => `<div class="rowitem">
           <span class="dot" style="width:8px;height:8px;border-radius:2px;background:${i.c}"></span>
           <div class="body"><div class="t">${esc(i.t)}</div><div class="m">${esc(i.b)} · ${esc(i.s)}</div></div>
         </div>`).join("") || `<div style="padding:14px;color:var(--muted);font-size:12.5px">No board items yet.</div>`}
       </div>
-
-      <h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:20px 0 9px">Account fields</h3>
+      <h3 class="sec">Account fields</h3>
       <dl class="kv">
         <dt>Payment terms</dt><dd>${c.type === "Customer" ? "45 days" : "—"}</dd>
-        <dt>Data classification</dt><dd>${c.id === "argos" ? "Restricted — Canada only, no AI access" : "Standard business data"}</dd>
+        <dt>Data classification</dt><dd>${c.id === "argos" ? "Restricted — Canada only" : "Standard business data"}</dd>
         <dt>Last contact</dt><dd>${c.id === "argos" ? "Today, by Dominic" : "This week"}</dd>
       </dl>
     </div>`);
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Statistics
+   Statistics — split by department
    ═══════════════════════════════════════════════════════════ */
-function viewStats(){
+function viewSalesStats(){
+  const pipeline = CRM.reduce((s,r) => s + r.val, 0);
+  const withCard = CUSTOMERS.filter(c => c.rev > 0).length;
   $("#view").innerHTML = `
     <div class="phead">
-      <div><h1>Statistics</h1><p>Customer and product numbers read off the same records the boards use. No second spreadsheet to keep in sync.</p></div>
-      <span class="sp"></span>
-      <button class="btn">Last 12 months</button>
+      <div><h1>Sales statistics</h1><p>Read off the same records the pipeline and the accounts use. No second spreadsheet to keep in sync.</p></div>
+      <span class="sp"></span><button class="btn">Last 12 months</button>
     </div>
     <div class="tiles">
-      <div class="tile"><div class="lab">Revenue, last 12 months</div><div class="val">CAD 998k</div>
-        <div class="sub"><span class="delta up">+41%</span> vs the 12 months before</div></div>
-      <div class="tile"><div class="lab">Active accounts</div><div class="val">8</div><div class="sub">3 added this year</div></div>
-      <div class="tile"><div class="lab">Average deal size</div><div class="val">CAD 74k</div><div class="sub">Won deals, 12 months</div></div>
-      <div class="tile"><div class="lab">Units in the field</div><div class="val">14</div><div class="sub">11 leased, 3 sold</div></div>
+      <div class="tile"><div class="lab">Open pipeline</div><div class="val">${k$(pipeline)}</div>
+        <div class="sub">${CRM.length} conversations</div></div>
+      <div class="tile"><div class="lab">Accounts with revenue</div><div class="val">8</div>
+        <div class="sub">${withCard} carry a card here</div></div>
+      <div class="tile"><div class="lab">Average deal size</div><div class="val">CAD 74k</div>
+        <div class="sub">Won deals, 12 months</div></div>
+      <div class="tile"><div class="lab">Win rate</div><div class="val">62%</div>
+        <div class="sub">Qualified to won</div></div>
     </div>
     <div class="figs">
       <div class="fig" id="fig-acc"></div>
       <div class="fig" id="fig-stage"></div>
+    </div>`;
+  drawAccounts(); drawStages();
+}
+
+function viewFinStats(){
+  $("#view").innerHTML = `
+    <div class="phead">
+      <div><h1>Revenue statistics</h1><p>Invoiced revenue by month and by product line, from the same records the finance queue works on.</p></div>
+      <span class="sp"></span><button class="btn">Last 12 months</button>
+    </div>
+    <div class="tiles">
+      <div class="tile"><div class="lab">Revenue, last 12 months</div><div class="val">CAD 998k</div>
+        <div class="sub"><span class="delta up">+41%</span> vs the 12 months before</div></div>
+      <div class="tile"><div class="lab">Invoiced in September</div><div class="val">CAD 131k</div>
+        <div class="sub">Best month so far</div></div>
+      <div class="tile"><div class="lab">Outstanding</div><div class="val">CAD 154k</div>
+        <div class="sub">2 invoices, 45-day terms</div></div>
+      <div class="tile"><div class="lab">Units in the field</div><div class="val">14</div>
+        <div class="sub">11 leased, 3 sold</div></div>
+    </div>
+    <div class="figs">
       <div class="fig" id="fig-trend" style="grid-column:1/-1"></div>
       <div class="fig" id="fig-prod" style="grid-column:1/-1"></div>
     </div>`;
-  drawAccounts(); drawStages(); drawTrend(); drawProducts();
+  drawTrend(); drawProducts();
 }
 
-function figHead(id, title, cap, showSwitch){
+function figHead(id, title, cap){
   return `<div class="figtop"><div><h3>${esc(title)}</h3><p class="cap">${esc(cap)}</p></div><span class="sp"></span>
-    ${showSwitch ? `<div class="switch" data-fig="${id}">
-      <button class="on" data-fmode="chart">Chart</button><button data-fmode="table">Table</button></div>` : ""}</div>`;
+    <div class="switch" data-fig="${id}">
+      <button class="on" data-fmode="chart">Chart</button><button data-fmode="table">Table</button></div></div>`;
 }
 
-/* Bars — one series, slot 1 */
 function drawAccounts(mode){
   const d = REV_BY_ACCOUNT, max = Math.max(...d.map(x => x.v));
   const rowH = 36, padT = 6, labW = 152, valW = 96, plotW = 286, h = d.length*rowH + padT + 6;
@@ -1085,16 +1147,16 @@ function drawAccounts(mode){
         </g>`;
       }).join("")}
     </svg>`;
+  const total = d.reduce((s,y) => s + y.v, 0);
   const table = `<table class="data"><thead><tr><th>Account</th><th class="r">Revenue, 12 m</th><th class="r">Share</th></tr></thead><tbody>
-    ${d.map(x => `<tr><td>${esc(x.k)}</td><td class="r">${cad(x.v)}</td><td class="r">${Math.round(x.v/d.reduce((s,y)=>s+y.v,0)*100)}%</td></tr>`).join("")}
+    ${d.map(x => `<tr><td>${esc(x.k)}</td><td class="r">${cad(x.v)}</td><td class="r">${Math.round(x.v/total*100)}%</td></tr>`).join("")}
     </tbody></table>`;
-  $("#fig-acc").innerHTML = figHead("acc","Revenue by account","Last 12 months. Two accounts carry 70% of it.",true)
+  $("#fig-acc").innerHTML = figHead("acc","Revenue by account","Last 12 months. Two accounts carry 70% of it.")
     + (mode === "table" ? table : chart);
 }
 
-/* Columns — ordered categories, ordinal blue ramp */
 function drawStages(mode){
-  const d = PIPE_BY_STAGE, ramp = ["#86b6ef","#5598e7","#2a78d6","#184f95"];
+  const d = pipelineByStage(), ramp = ["#86b6ef","#5598e7","#2a78d6","#184f95"];
   const W = 540, H = 262, padL = 58, padR = 14, padT = 18, base = H - 50;
   const max = 300000, plotW = W - padL - padR, band = plotW / d.length, bw = 24;
   const ticks = [0,100000,200000,300000];
@@ -1107,11 +1169,11 @@ function drawStages(mode){
       }).join("")}
       ${d.map((x,i) => {
         const cx = padL + band*i + band/2, bh = Math.max((x.v/max)*(base-padT), 3), y = base - bh;
-        return `<g class="bhit" data-tip="${esc(x.k)}|${cad(x.v)} · ${x.n} item${x.n>1?"s":""}">
+        return `<g class="bhit" data-tip="${esc(x.k)}|${cad(x.v)} · ${x.n} item${x.n===1?"":"s"}">
           <path d="M${cx-bw/2} ${base} v${-(bh-4)} a4,4 0 0 1 4,-4 h${bw-8} a4,4 0 0 1 4,4 v${bh-4} z" fill="${ramp[i]}"></path>
           <text class="val" x="${cx}" y="${y-8}" text-anchor="middle">${Math.round(x.v/1000)}k</text>
           <text class="cat" x="${cx}" y="${base+18}" text-anchor="middle">${esc(x.k)}</text>
-          <text x="${cx}" y="${base+32}" text-anchor="middle">${x.n} item${x.n>1?"s":""}</text>
+          <text x="${cx}" y="${base+32}" text-anchor="middle">${x.n} item${x.n===1?"":"s"}</text>
           <rect class="hit" x="${cx-band/2}" y="${padT}" width="${band}" height="${base-padT}"></rect>
         </g>`;
       }).join("")}
@@ -1119,11 +1181,10 @@ function drawStages(mode){
   const table = `<table class="data"><thead><tr><th>Stage</th><th class="r">Items</th><th class="r">Value</th></tr></thead><tbody>
     ${d.map(x => `<tr><td>${esc(x.k)}</td><td class="r">${x.n}</td><td class="r">${cad(x.v)}</td></tr>`).join("")}
     </tbody></table>`;
-  $("#fig-stage").innerHTML = figHead("stage","Open pipeline by stage","Value of everything still open on the CRM board, CAD.",true)
+  $("#fig-stage").innerHTML = figHead("stage","Open pipeline by stage","Counted straight off the pipeline board, CAD.")
     + (mode === "table" ? table : chart);
 }
 
-/* Lines — two series, legend + end labels */
 function drawTrend(mode){
   const W = 1140, H = 340, padL = 64, padR = 112, padT = 20, base = H - 50;
   const max = 150, plotW = W - padL - padR, step = plotW / (MONTHS.length - 1);
@@ -1131,8 +1192,8 @@ function drawTrend(mode){
   const path = arr => arr.map((v,i) => (i?"L":"M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join(" ");
   const ticks = [0,50,100,150];
   const series = [
-    {k:"2026", col:"var(--s1)", raw:"#2a78d6", d:TREND.y2026},
-    {k:"2025", col:"var(--s2)", raw:"#eb6834", d:TREND.y2025}
+    {k:"2026", raw:"#2a78d6", d:TREND.y2026},
+    {k:"2025", raw:"#eb6834", d:TREND.y2025}
   ];
   const chart = `
     <div class="legend">${series.map(s => `<span><i style="background:${s.raw}"></i>${s.k}</span>`).join("")}</div>
@@ -1153,11 +1214,10 @@ function drawTrend(mode){
   const table = `<table class="data"><thead><tr><th>Month</th><th class="r">2026 (CAD k)</th><th class="r">2025 (CAD k)</th></tr></thead><tbody>
     ${MONTHS.map((m,i) => `<tr><td>${m}</td><td class="r">${TREND.y2026[i]}</td><td class="r">${TREND.y2025[i]}</td></tr>`).join("")}
     </tbody></table>`;
-  $("#fig-trend").innerHTML = figHead("trend","Monthly revenue","CAD thousands, invoiced. This year against the same months last year.",true)
+  $("#fig-trend").innerHTML = figHead("trend","Monthly revenue","CAD thousands, invoiced. This year against the same months last year.")
     + (mode === "table" ? table : chart);
 }
 
-/* Product lines */
 function drawProducts(mode){
   const d = PRODUCT_LINES, max = Math.max(...d.map(x => x.v));
   const rowH = 42, labW = 250, valW = 200, plotW = 640, W = labW+plotW+valW, h = d.length*rowH + 12;
@@ -1177,51 +1237,8 @@ function drawProducts(mode){
   const table = `<table class="data"><thead><tr><th>Product line</th><th class="r">Revenue, 12 m</th><th class="r">Units</th></tr></thead><tbody>
     ${d.map(x => `<tr><td>${esc(x.k)}</td><td class="r">${cad(x.v)}</td><td class="r">${x.u}</td></tr>`).join("")}
     </tbody></table>`;
-  $("#fig-prod").innerHTML = figHead("prod","Revenue by product line","Last 12 months. Leases carry the base; commissioning follows every unit.",true)
+  $("#fig-prod").innerHTML = figHead("prod","Revenue by product line","Last 12 months. Leases carry the base; commissioning follows every unit.")
     + (mode === "table" ? table : chart);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   AI & data rules
-   ═══════════════════════════════════════════════════════════ */
-function viewRules(){
-  const reads = [
-    {v:"yes",t:"Board items, columns and comments",d:"Titles, stages, dates, owners, values. The working layer of the hub."},
-    {v:"yes",t:"Account name, terms and revenue history",d:"The commercial record. Enough to draft, prioritise and summarise."},
-    {v:"ask",t:"Email in the connected inboxes",d:"Read to classify and link. First-contact mail can be drafted automatically; active conversations wait for you."},
-    {v:"no",t:"IP, codebase and technical documentation",d:"Stays in Canada, never reaches a model. Referenced by JIRA key only."},
-    {v:"no",t:"Customer field data and mission recordings",d:"Held in the hub behind a field marked as restricted. No AI read path exists."},
-    {v:"no",t:"Personal data about team members",d:"Payroll, addresses, performance. Excluded by an allow-list, not by an exception bolted on later."}
-  ];
-  const gates = [
-    {t:"Send a payment",d:"Proposed, queued, never executed by the system."},
-    {t:"Email a customer or an important partner",d:"Drafted for you. Your send, your signature."},
-    {t:"Change a financial record",d:"The hub writes to its own tables, never to QuickBooks."},
-    {t:"Change data in OneDrive",d:"Read-only. Files are attached, not rewritten."}
-  ];
-  $("#view").innerHTML = `
-    <div class="phead">
-      <div><h1>AI &amp; data rules</h1><p>What the hub's AI features may read, what never leaves your side, and what always waits for a person. Written from the answers Dominic gave in the questionnaire.</p></div>
-    </div>
-    <div class="note"><b>The rule that shapes the build:</b> an allow-list, not an exception list. A field is invisible to AI until it is named here — so a column added next year is private by default, and nobody has to remember to protect it.</div>
-    <div class="cols2">
-      <section class="panel">
-        <header><h2>What AI may read</h2><span class="sp"></span><span class="hint">Allow-list</span></header>
-        ${reads.map(r => `<div class="gate">
-          <span class="g-ico ${r.v}"><svg class="i"><use href="#i-${r.v==="no"?"x":r.v==="ask"?"clock":"check"}"/></svg></span>
-          <div class="gb"><div class="gt">${esc(r.t)}</div><div class="gd">${esc(r.d)}</div></div>
-          <span class="verdict ${r.v}">${r.v==="yes"?"Allowed":r.v==="ask"?"Conditional":"Never"}</span>
-        </div>`).join("")}
-      </section>
-      <section class="panel">
-        <header><h2>Always a human</h2><span class="sp"></span><span class="hint">Your list, unchanged</span></header>
-        ${gates.map(g => `<div class="gate">
-          <span class="g-ico no"><svg class="i"><use href="#i-shield"/></svg></span>
-          <div class="gb"><div class="gt">${esc(g.t)}</div><div class="gd">${esc(g.d)}</div></div>
-        </div>`).join("")}
-        <div class="gate"><div class="gb"><div class="gd" style="margin:0">Data residency: the hub's database sits in a Canadian region from the first migration, not moved there later.</div></div></div>
-      </section>
-    </div>`;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1239,6 +1256,44 @@ function closeDetail(){
   $("#scrim").classList.remove("on");
   $("#notifs").classList.remove("on");
 }
+
+function openMeeting(id){
+  const m = meetById(id);
+  if (!m) return;
+  const body = m.state === "done"
+    ? `<h3 class="sec">Summary</h3>
+       <p style="margin:0;font-size:13.5px;color:var(--text2)">${esc(m.summary)}</p>
+       <h3 class="sec">Tasks extracted <span class="pill">${m.tasks.length}</span></h3>
+       ${m.tasks.map((t,i) => `<div class="exline taken" data-task="${i}">
+          <button class="cb" aria-label="Keep on the board"><svg class="i"><use href="#i-check"/></svg></button>
+          <div style="flex:1"><span class="xt">${esc(t.t)}</span>
+            <div style="font-size:11.5px;color:var(--muted);margin-top:3px">${esc(P[t.own].n)} · ${esc(t.board)}</div></div>
+        </div>`).join("")}
+       <p style="font-size:12px;color:var(--muted);margin:14px 0 0">All three are on the boards already. Untick one to take it back off.</p>`
+    : `<h3 class="sec">Brief</h3>
+       <ul class="bullets">${m.brief.map(b => `<li>${esc(b)}</li>`).join("")}</ul>
+       ${m.cust ? `<h3 class="sec">Account</h3>${custChip(m.cust)}` : ""}
+       <h3 class="sec">After the meeting</h3>
+       <p style="margin:0;font-size:13px;color:var(--muted)">A summary lands here when the meeting ends, with the tasks pulled out of it for you to keep or drop.</p>`;
+  showDetail(`
+    <header style="position:relative">
+      <button class="icon-btn close" id="dclose" aria-label="Close"><svg class="i lg"><use href="#i-x"/></svg></button>
+      <h2>${esc(m.t)}</h2>
+      <div style="font-size:12.5px;color:var(--muted)">${m.time} · ${esc(m.place)}</div>
+      <div class="meta">
+        <div><div class="lab">Attendees</div><div style="margin-top:3px">${people(m.who)}</div></div>
+        <div><div class="lab">Status</div>${m.state === "done" ? `<span class="tag ok">Done</span>` : `<span class="tag warn">Later today</span>`}</div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        ${m.state === "done"
+          ? `<button class="btn"><svg class="i"><use href="#i-file"/></svg> Full notes</button>`
+          : `<button class="btn primary"><svg class="i"><use href="#i-video"/></svg> Join</button>
+             <button class="btn">Add to the brief</button>`}
+      </div>
+    </header>
+    <div class="dbody">${body}</div>`);
+}
+
 function findItem(id){
   const inCrm = CRM.find(r => r.id === id);
   if (inCrm) return {kind:"crm", r:inCrm};
@@ -1258,29 +1313,38 @@ function openItem(id){
   const files = FILES[id] || [];
   const acts = ACTIVITY[id] || [{t:"today",m:"Item created"}];
 
-  let meta = "";
-  if (kind === "crm") meta = `
-    <div><div class="lab">Account</div>${custChip(r.cust)}</div>
-    <div><div class="lab">Stage</div>${fill(STAGE,r.stage)}</div>
-    <div><div class="lab">Next step</div>${dateCell(r.next)}</div>
-    <div><div class="lab">Value</div><strong>${r.val?cad(r.val):"—"}</strong></div>
-    <div><div class="lab">Owner</div><div style="margin-top:3px">${people(r.own)}</div></div>
-    <div><div class="lab">Source</div><span class="tag">${esc(r.src)}</span></div>`;
-  else if (kind === "proj") meta = `
-    <div><div class="lab">Phase</div>${fill(PHASE,r.phase)}</div>
-    <div><div class="lab">Account</div>${custChip(r.cust)}</div>
-    <div><div class="lab">JIRA</div><span class="tag">${esc(r.jira)}</span></div>
-    <div><div class="lab">Owner</div><div style="margin-top:3px">${people(r.own)}</div></div>`;
-  else if (kind === "appr") meta = `
-    <div><div class="lab">Type</div><span class="tag">${esc(r.kind)}</span></div>
-    <div><div class="lab">Amount</div><strong style="font-size:16px">${cad(r.amt)}</strong></div>
-    <div><div class="lab">Due</div>${dateCell(r.due)}</div>
-    <div><div class="lab">Status</div>${fill(APPR,r.st)}</div>
-    <div><div class="lab">Requested by</div><div style="margin-top:3px">${av(r.who,"sm")} <span style="font-size:12.5px">${esc(P[r.who].n)}</span></div></div>
-    <div><div class="lab">Account</div>${custChip(r.cust)}</div>`;
-  else meta = `
-    <div><div class="lab">Board</div><span class="boardchip"><span class="dot" style="background:${r.bc}"></span>${esc(r.board)}</span></div>
-    <div><div class="lab">Due</div>${dateCell(r.due)}</div>`;
+  let meta = "", where = "";
+  if (kind === "crm"){
+    where = "Pipeline · Sales";
+    meta = `
+      <div><div class="lab">Account</div>${custChip(r.cust)}</div>
+      <div><div class="lab">Stage</div>${fill(STAGE,r.stage)}</div>
+      <div><div class="lab">Next step</div>${dateCell(r.next)}</div>
+      <div><div class="lab">Value</div><strong>${r.val?cad(r.val):"—"}</strong></div>
+      <div><div class="lab">Owner</div><div style="margin-top:3px">${people(r.own)}</div></div>
+      <div><div class="lab">Source</div><span class="tag">${esc(r.src)}</span></div>`;
+  } else if (kind === "proj"){
+    where = PROJ_VIEWS[r.dept].title + " · " + PROJ_VIEWS[r.dept].dept;
+    meta = `
+      <div><div class="lab">Phase</div>${fill(PHASE,r.phase)}</div>
+      <div><div class="lab">Account</div>${custChip(r.cust)}</div>
+      <div><div class="lab">JIRA</div><span class="tag">${esc(r.jira)}</span></div>
+      <div><div class="lab">Owner</div><div style="margin-top:3px">${people(r.own)}</div></div>`;
+  } else if (kind === "appr"){
+    where = "Invoices & expenses · Finance";
+    meta = `
+      <div><div class="lab">Type</div><span class="tag">${esc(r.kind)}</span></div>
+      <div><div class="lab">Amount</div><strong style="font-size:16px">${cad(r.amt)}</strong></div>
+      <div><div class="lab">Due</div>${dateCell(r.due)}</div>
+      <div><div class="lab">Status</div>${fill(APPR,r.st)}</div>
+      <div><div class="lab">Requested by</div><div style="margin-top:3px">${av(r.who,"sm")} <span style="font-size:12.5px">${esc(P[r.who].n)}</span></div></div>
+      <div><div class="lab">Account</div>${custChip(r.cust)}</div>`;
+  } else {
+    where = r.board;
+    meta = `
+      <div><div class="lab">Board</div><span class="boardchip"><span class="dot" style="background:${r.bc}"></span>${esc(r.board)}</span></div>
+      <div><div class="lab">Due</div>${dateCell(r.due)}</div>`;
+  }
 
   const approveBar = (kind === "appr" && r.st === "pending")
     ? `<div style="display:flex;gap:8px;margin-top:14px">
@@ -1292,7 +1356,7 @@ function openItem(id){
     <header style="position:relative">
       <button class="icon-btn close" id="dclose" aria-label="Close"><svg class="i lg"><use href="#i-x"/></svg></button>
       <h2>${esc(r.t)}</h2>
-      <div style="font-size:12.5px;color:var(--muted)">${kind==="crm"?"CRM pipeline":kind==="proj"?"Projects & programs":kind==="appr"?"Approvals":esc(r.board)}</div>
+      <div style="font-size:12.5px;color:var(--muted)">${esc(where)}</div>
       <div class="meta">${meta}</div>
       ${approveBar}
     </header>
@@ -1328,9 +1392,6 @@ function openItem(id){
   });
 }
 
-/* ═══════════════════════════════════════════════════════════
-   Notifications
-   ═══════════════════════════════════════════════════════════ */
 function renderNotifs(){
   $("#notifs").innerHTML = `
     <header><h3>Notifications</h3><button class="btn sm">Mark all read</button></header>
@@ -1353,6 +1414,9 @@ function showTip(html, x, y){
 const hideTip = () => tip.classList.remove("on");
 
 document.addEventListener("click", e => {
+  const meet = e.target.closest("[data-meeting]");
+  if (meet){ openMeeting(meet.dataset.meeting); return; }
+
   const nav = e.target.closest("[data-view]");
   if (nav){ go(nav.dataset.view); return; }
 
@@ -1360,24 +1424,26 @@ document.addEventListener("click", e => {
   if (mode){
     const [key, m] = mode.dataset.mode.split(":");
     boardMode[key] = m;
-    (key === "crm" ? viewCRM : viewProjects)();
+    key === "pipeline" ? viewPipeline() : viewProjects(key);
     return;
   }
   const grp = e.target.closest("[data-group]");
   if (grp){
     const id = grp.dataset.group;
     collapsed.has(id) ? collapsed.delete(id) : collapsed.add(id);
-    (current === "crm" ? viewCRM : viewProjects)();
+    current === "pipeline" ? viewPipeline() : viewProjects(current);
     return;
   }
   const fmode = e.target.closest("[data-fmode]");
   if (fmode){
     const box = fmode.closest("[data-fig]");
     box.querySelectorAll("button").forEach(b => b.classList.toggle("on", b === fmode));
-    const m = fmode.dataset.fmode;
-    ({acc:drawAccounts, stage:drawStages, trend:drawTrend, prod:drawProducts}[box.dataset.fig])(m);
+    ({acc:drawAccounts, stage:drawStages, trend:drawTrend, prod:drawProducts}[box.dataset.fig])(fmode.dataset.fmode);
     return;
   }
+  const task = e.target.closest("[data-task]");
+  if (task){ task.classList.toggle("taken"); return; }
+
   const cust = e.target.closest("[data-cust]");
   if (cust){ openCustomer(cust.dataset.cust); return; }
 
@@ -1387,7 +1453,7 @@ document.addEventListener("click", e => {
     const row = APPROVALS.find(a => a.id === id);
     if (row) row.st = ap ? "approved" : "rejected";
     closeDetail(); renderNav();
-    (current === "approvals" ? viewApprovals : viewHome)();
+    current === "approvals" ? viewApprovals() : viewHome();
     return;
   }
   const done = e.target.closest("[data-done]");
@@ -1401,18 +1467,18 @@ document.addEventListener("click", e => {
   if (e.target.closest("#navtoggle")){ $("#nav").classList.toggle("open"); return; }
   if (!e.target.closest("#notifs")) $("#notifs").classList.remove("on");
 });
+
 document.addEventListener("keydown", e => {
   if (e.key === "Escape"){ closeDetail(); return; }
   if (e.key === "Enter" || e.key === " "){
     const el = document.activeElement;
     if (!el) return;
-    const item = el.matches("[data-item]") ? el : null, cust = el.matches("[data-cust]") ? el : null;
-    if (item){ e.preventDefault(); openItem(item.dataset.item); }
-    else if (cust){ e.preventDefault(); openCustomer(cust.dataset.cust); }
+    if (el.matches("[data-meeting]")){ e.preventDefault(); openMeeting(el.dataset.meeting); }
+    else if (el.matches("[data-item]")){ e.preventDefault(); openItem(el.dataset.item); }
+    else if (el.matches("[data-cust]")){ e.preventDefault(); openCustomer(el.dataset.cust); }
   }
 });
 
-/* chart hover */
 document.addEventListener("mouseover", e => {
   const b = e.target.closest(".bhit");
   if (b && b.dataset.tip){
@@ -1430,7 +1496,7 @@ document.addEventListener("mouseover", e => {
     if (cross){ const bb = l.querySelector("rect").getBBox(); cross.setAttribute("x1", bb.x + bb.width/2); cross.setAttribute("x2", bb.x + bb.width/2); cross.setAttribute("opacity","0.55"); }
     return;
   }
-  if (!e.target.closest(".tip")) {
+  if (!e.target.closest(".tip")){
     hideTip();
     const cross = document.querySelector("#cross");
     if (cross) cross.setAttribute("opacity","0");
