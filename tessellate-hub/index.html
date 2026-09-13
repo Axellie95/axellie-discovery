@@ -421,6 +421,12 @@ table.data td.r,table.data th.r{text-align:right}
 
 /* ── Dashboard: widgets that read across every table ─────── */
 .dash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+/* Grid children default to min-width:auto and refuse to shrink below their
+   content, which made every widget spill past a phone viewport. */
+.dash-grid > .widget{min-width:0}
+.wnums,.wnum{min-width:0}
+.wnum .l,.wnum .v{overflow-wrap:anywhere}
+.batlegend span{min-width:0}
 .widget{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);position:relative;overflow:visible}
 .widget.span2{grid-column:1/-1}
 .widget.dragging{opacity:.35}
